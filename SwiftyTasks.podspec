@@ -20,7 +20,7 @@ Pragmatic approach to async tasks in Swift.
   s.author           = { 'Victor Pavlychko' => 'victor.pavlychko@gmail.com' }
   s.source           = { :git => 'https://github.com/victor-pavlychko/SwiftyTasks.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/victorpavlychko'
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '8.0'
   s.source_files = 'SwiftyTasks/**/*'
   s.frameworks = 'UIKit'
 end
