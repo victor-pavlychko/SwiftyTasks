@@ -8,21 +8,45 @@
 
 import Foundation
 
+/// <#Description#>
+///
+/// - parameter lhs: <#lhs description#>
+/// - parameter rhs: <#rhs description#>
+///
+/// - returns: <#return value description#>
 public func <= <T: Operation> (lhs: OperationQueue, rhs: T) -> T {
     lhs.addOperation(rhs)
     return rhs
 }
 
+/// <#Description#>
+///
+/// - parameter lhs: <#lhs description#>
+/// - parameter rhs: <#rhs description#>
+///
+/// - returns: <#return value description#>
 public func <= <T: TaskProtocol> (lhs: OperationQueue, rhs: T) -> T {
     lhs.addOperation(rhs.backingOperation)
     return rhs
 }
 
+/// <#Description#>
+///
+/// - parameter lhs: <#lhs description#>
+/// - parameter rhs: <#rhs description#>
+///
+/// - returns: <#return value description#>
 public func += <T: Operation> (lhs: OperationQueue, rhs: T) -> T {
     lhs.addOperation(rhs)
     return rhs
 }
 
+/// <#Description#>
+///
+/// - parameter lhs: <#lhs description#>
+/// - parameter rhs: <#rhs description#>
+///
+/// - returns: <#return value description#>
 public func += <T: TaskProtocol> (lhs: OperationQueue, rhs: T) -> T {
     lhs.addOperation(rhs.backingOperation)
     return rhs

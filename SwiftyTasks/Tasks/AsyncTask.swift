@@ -8,11 +8,13 @@
 
 import Foundation
 
+/// <#Description#>
 fileprivate enum AsyncTaskState {
     case created
     case executing
     case finished
     
+    /// <#Description#>
     var keyPath: String? {
         switch self {
         case .created: return nil
@@ -22,6 +24,7 @@ fileprivate enum AsyncTaskState {
     }
 }
 
+/// <#Description#>
 open class AsyncTask<ResultType>: Task<ResultType> {
     
     private var _state: AsyncTaskState = .created {

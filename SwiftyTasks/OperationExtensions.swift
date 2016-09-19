@@ -9,6 +9,8 @@
 import Foundation
 
 public extension Operation {
+    
+    /// <#Description#>
     public func purgeDependencies() {
         dependencies.forEach(removeDependency)
     }

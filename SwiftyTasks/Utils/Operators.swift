@@ -10,8 +10,6 @@ import Foundation
 
 infix operator =>
 
-// MARK: - Object setup -
-
 func => <T> (lhs: T, rhs: (T) -> Void) -> T {
     rhs(lhs)
     return lhs

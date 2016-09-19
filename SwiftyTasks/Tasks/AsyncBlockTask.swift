@@ -8,26 +8,48 @@
 
 import Foundation
 
+/// <#Description#>
 public final class AsyncBlockTask<ResultType>: AsyncTask<ResultType> {
 
     private var _block: ((AsyncBlockTask<ResultType>) throws -> Void)!
     
+    /// <#Description#>
+    ///
+    /// - parameter block: <#block description#>
+    ///
+    /// - returns: <#return value description#>
     init(_ block: @escaping (@escaping (ResultType) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
+    /// <#Description#>
+    ///
+    /// - parameter block: <#block description#>
+    ///
+    /// - returns: <#return value description#>
     init(_ block: @escaping (@escaping (ResultType?, Error?) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
+    /// <#Description#>
+    ///
+    /// - parameter block: <#block description#>
+    ///
+    /// - returns: <#return value description#>
     init(_ block: @escaping (@escaping (ResultType?) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
+    /// <#Description#>
+    ///
+    /// - parameter block: <#block description#>
+    ///
+    /// - returns: <#return value description#>
     init(_ block: @escaping (@escaping (() throws -> ResultType) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
+    /// <#Description#>
     public override func main() {
         do {
             try _block(self)

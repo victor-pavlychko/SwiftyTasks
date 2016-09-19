@@ -8,14 +8,25 @@
 
 import Foundation
 
+/// <#Description#>
 public final class BlockTask<ResultType>: Task<ResultType> {
     
     private let _block: () throws -> ResultType
 
+    /// <#Description#>
+    ///
+    /// - parameter block: <#block description#>
+    ///
+    /// - returns: <#return value description#>
     public init(_ block: @escaping () throws -> ResultType) {
         _block = block
     }
     
+    /// <#Description#>
+    ///
+    /// - parameter block: <#block description#>
+    ///
+    /// - returns: <#return value description#>
     public init(_ block: @escaping () -> ResultType?) {
         _block = {
             guard let result = block() else {
@@ -26,6 +37,7 @@ public final class BlockTask<ResultType>: Task<ResultType> {
         }
     }
     
+    /// <#Description#>
     public override func main() {
         finish(_block)
     }

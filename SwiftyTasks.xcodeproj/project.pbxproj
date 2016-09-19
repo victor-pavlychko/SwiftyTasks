@@ -113,6 +113,7 @@
 		57CDEB7C1D8FEC0D00E78BE5 /* SwiftyTasksTests */ = {
 			isa = PBXGroup;
 			children = (
+				57CDEBAB1D8FF6F000E78BE5 /* Tasks */,
 				57CDEB7D1D8FEC0D00E78BE5 /* SwiftyTasksTests.swift */,
 				57CDEB7F1D8FEC0D00E78BE5 /* Info.plist */,
 			);
@@ -158,6 +159,13 @@
 				57CDEBA91D8FED8600E78BE5 /* Operators.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		57CDEBAB1D8FF6F000E78BE5 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tasks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
