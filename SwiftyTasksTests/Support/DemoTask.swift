@@ -9,6 +9,13 @@
 import Foundation
 import SwiftyTasks
 
+enum DemoError: Error {
+    case demoError
+}
+
+let dummyResult = "Success"
+let dummyError = DemoError.demoError
+
 enum DemoTaskResult<ResultType> {
     case success(ResultType)
     case error(Error)

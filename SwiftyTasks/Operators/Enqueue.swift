@@ -36,7 +36,7 @@ public func += <T: TaskProtocol> (lhs: OperationQueue, rhs: T) -> T {
 /// - parameter rhs: <#rhs description#>
 ///
 /// - returns: <#return value description#>
-public func ~~ <T: Operation> (lhs: T, rhs: Operation) -> T {
+public func ~~ <T: Operation, U: Operation> (lhs: T, rhs: U) -> T {
     lhs.addDependency(rhs)
     return lhs
 }
@@ -47,7 +47,7 @@ public func ~~ <T: Operation> (lhs: T, rhs: Operation) -> T {
 /// - parameter rhs: <#rhs description#>
 ///
 /// - returns: <#return value description#>
-public func ~~ <T: Operation> (lhs: T, rhs: AnyTask) -> T {
+public func ~~ <T: Operation, U: AnyTask> (lhs: T, rhs: U) -> T {
     rhs.backingOperations.forEach(lhs.addDependency)
     return lhs
 }
@@ -58,7 +58,7 @@ public func ~~ <T: Operation> (lhs: T, rhs: AnyTask) -> T {
 /// - parameter rhs: <#rhs description#>
 ///
 /// - returns: <#return value description#>
-public func ~~ <T: TaskProtocol> (lhs: T, rhs: Operation) -> T {
+public func ~~ <T: AnyTask, U: Operation> (lhs: T, rhs: U) -> T {
     lhs.backingOperations.forEach {
         $0.addDependency(rhs)
     }
@@ -71,7 +71,7 @@ public func ~~ <T: TaskProtocol> (lhs: T, rhs: Operation) -> T {
 /// - parameter rhs: <#rhs description#>
 ///
 /// - returns: <#return value description#>
-public func ~~ <T: TaskProtocol> (lhs: T, rhs: AnyTask) -> T {
+public func ~~ <T: AnyTask, U: AnyTask> (lhs: T, rhs: U) -> T {
     lhs.backingOperations.forEach {
         rhs.backingOperations.forEach($0.addDependency)
     }
