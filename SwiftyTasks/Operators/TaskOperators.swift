@@ -11,11 +11,7 @@ import Foundation
 precedencegroup PartialApplicationPrecedence {
     associativity: left
     higherThan: AssignmentPrecedence
-}
-
-precedencegroup ReverseApplicationPrecedence {
-    associativity: left
-    higherThan: PartialApplicationPrecedence
+    lowerThan: TernaryPrecedence
 }
 
 /// Partial application operator
@@ -34,10 +30,17 @@ infix operator <~ : PartialApplicationPrecedence
 /// - returns: `lhs`
 infix operator ~~ : PartialApplicationPrecedence
 
+// We do not define `~>` operator because stdlib aready did that for it's weird reasons...
+
+//precedencegroup ReverseApplicationPrecedence {
+//    associativity: left
+//    higherThan: PartialApplicationPrecedence
+//}
+
 /// Application operator
 ///
 /// - parameter lhs: Argument tuple
 /// - parameter rhs: Function
 ///
 /// - returns: `rhs` with arguments bound to `lhs`
-infix operator ~> : ReverseApplicationPrecedence
+//infix operator ~> : ReverseApplicationPrecedence

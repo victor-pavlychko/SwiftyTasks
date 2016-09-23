@@ -32,7 +32,7 @@ class AsyncTaskTests: XCTestCase {
         
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 XCTAssertEqual(try task.getResult(), dummyResult)
             } catch {
@@ -54,7 +54,7 @@ class AsyncTaskTests: XCTestCase {
         
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 let _ = try task.getResult()
                 XCTFail()
@@ -77,7 +77,7 @@ class AsyncTaskTests: XCTestCase {
         
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 XCTAssertEqual(try task.getResult(), dummyResult)
             } catch {
@@ -99,7 +99,7 @@ class AsyncTaskTests: XCTestCase {
         
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 let _ = try task.getResult()
                 XCTFail()
@@ -122,7 +122,7 @@ class AsyncTaskTests: XCTestCase {
         
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 XCTAssertEqual(try task.getResult(), dummyResult)
             } catch {
@@ -144,7 +144,7 @@ class AsyncTaskTests: XCTestCase {
         
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 let _ = try task.getResult()
                 XCTFail()
@@ -167,7 +167,7 @@ class AsyncTaskTests: XCTestCase {
         
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 XCTAssertEqual(try task.getResult(), dummyResult)
             } catch {
@@ -189,7 +189,7 @@ class AsyncTaskTests: XCTestCase {
         
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 let _ = try task.getResult()
                 XCTFail()

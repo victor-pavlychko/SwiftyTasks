@@ -33,10 +33,43 @@ class ChainingTests: XCTestCase {
         queue.addOperation(task1)
         queue.addOperation(task2)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 try XCTAssertEqual(task1.getResult(), "Success1")
                 try XCTAssertEqual(task2.getResult(), "Success2")
+            } catch {
+                XCTFail(error.localizedDescription)
+            }
+        }
+    }
+    
+    func testComplexChain() {
+        
+        let waitQueue = OperationQueue()
+        let taskQueue = OperationQueue()
+        
+        let waitOperation = waitQueue
+            += BlockOperation { sleep(20) }
+
+        let taskPart1 = taskQueue
+            += DemoTask.init(_:)
+            <~ .success("Suc")
+        
+        let taskPart2 = taskQueue
+            += DemoAsyncTask.init(_:)
+            <~ .success("cess")
+
+        let task = taskQueue
+            += DemoTask.init(_:)
+            <~ (taskPart1, taskPart2) ~> { .success($0 + $1) }
+            ~~ waitOperation
+        
+        expectation(task: task)
+        
+        waitForExpectations {
+            do {
+                XCTAssert(waitOperation.isFinished)
+                XCTAssertEqual(try task.getResult(), dummyResult)
             } catch {
                 XCTFail(error.localizedDescription)
             }

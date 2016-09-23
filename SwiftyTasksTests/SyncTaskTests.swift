@@ -21,13 +21,18 @@ class SyncTaskTests: XCTestCase {
     
     func testSuccess() {
         
-        let task = DemoTask(.success(dummyResult))
-        expectation(task: task)
-        
+        let xp = expectation(description: "")
         let queue = OperationQueue()
+        
+        let task = DemoAsyncTask(.success(dummyResult))
+        
+        task.completionBlock = {
+            xp.fulfill()
+        }
+        
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 XCTAssertEqual(try task.getResult(), dummyResult)
             } catch {
@@ -38,13 +43,18 @@ class SyncTaskTests: XCTestCase {
     
     func testError() {
         
-        let task = DemoTask(DemoTaskResult<String>.error(dummyError))
-        expectation(task: task)
-        
+        let xp = expectation(description: "")
         let queue = OperationQueue()
+        
+        let task = DemoAsyncTask(DemoTaskResult<String>.error(dummyError))
+        
+        task.completionBlock = {
+            xp.fulfill()
+        }
+        
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 let _ = try task.getResult()
                 XCTFail()
@@ -56,13 +66,18 @@ class SyncTaskTests: XCTestCase {
     
     func testSuccessOrError_Success() {
         
-        let task = DemoTask(.successOrError(dummyResult, nil))
-        expectation(task: task)
-        
+        let xp = expectation(description: "")
         let queue = OperationQueue()
+        
+        let task = DemoAsyncTask(.successOrError(dummyResult, nil))
+        
+        task.completionBlock = {
+            xp.fulfill()
+        }
+        
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 XCTAssertEqual(try task.getResult(), dummyResult)
             } catch {
@@ -73,13 +88,18 @@ class SyncTaskTests: XCTestCase {
     
     func testSuccessOrError_Error() {
         
-        let task = DemoTask(DemoTaskResult<String>.successOrError(nil, dummyError))
-        expectation(task: task)
-        
+        let xp = expectation(description: "")
         let queue = OperationQueue()
+        
+        let task = DemoAsyncTask(DemoTaskResult<String>.successOrError(nil, dummyError))
+        
+        task.completionBlock = {
+            xp.fulfill()
+        }
+        
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 let _ = try task.getResult()
                 XCTFail()
@@ -91,13 +111,18 @@ class SyncTaskTests: XCTestCase {
     
     func testOptionalSuccess_Some() {
         
-        let task = DemoTask(.optionalSuccess(dummyResult))
-        expectation(task: task)
-        
+        let xp = expectation(description: "")
         let queue = OperationQueue()
+        
+        let task = DemoAsyncTask(.optionalSuccess(dummyResult))
+        
+        task.completionBlock = {
+            xp.fulfill()
+        }
+        
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 XCTAssertEqual(try task.getResult(), dummyResult)
             } catch {
@@ -108,13 +133,18 @@ class SyncTaskTests: XCTestCase {
     
     func testOptionalSuccess_None() {
         
-        let task = DemoTask(DemoTaskResult<String>.optionalSuccess(nil))
-        expectation(task: task)
-        
+        let xp = expectation(description: "")
         let queue = OperationQueue()
+        
+        let task = DemoAsyncTask(DemoTaskResult<String>.optionalSuccess(nil))
+        
+        task.completionBlock = {
+            xp.fulfill()
+        }
+        
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 let _ = try task.getResult()
                 XCTFail()
@@ -126,13 +156,18 @@ class SyncTaskTests: XCTestCase {
     
     func testResultBlock_Success() {
         
-        let task = DemoTask(.resultBlock({ return dummyResult }))
-        expectation(task: task)
-        
+        let xp = expectation(description: "")
         let queue = OperationQueue()
+        
+        let task = DemoAsyncTask(.resultBlock({ return dummyResult }))
+        
+        task.completionBlock = {
+            xp.fulfill()
+        }
+        
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 XCTAssertEqual(try task.getResult(), dummyResult)
             } catch {
@@ -143,13 +178,18 @@ class SyncTaskTests: XCTestCase {
     
     func testResultBlock_Error() {
         
-        let task = DemoTask(DemoTaskResult<String>.resultBlock({ throw dummyError }))
-        expectation(task: task)
-        
+        let xp = expectation(description: "")
         let queue = OperationQueue()
+        
+        let task = DemoAsyncTask(DemoTaskResult<String>.resultBlock({ throw dummyError }))
+        
+        task.completionBlock = {
+            xp.fulfill()
+        }
+        
         queue.addOperation(task)
         
-        waitForExpectations(timeout: 60) { error in
+        waitForExpectations {
             do {
                 let _ = try task.getResult()
                 XCTFail()

@@ -12,6 +12,8 @@
 		570C13781D95B758001E5C62 /* DemoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C13771D95B758001E5C62 /* DemoTask.swift */; };
 		570C137A1D95B761001E5C62 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C13791D95B761001E5C62 /* TestUtils.swift */; };
 		570C137C1D95BAB3001E5C62 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 570C137B1D95BAB3001E5C62 /* .travis.yml */; };
+		570C137E1D95C0EB001E5C62 /* BlockTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C137D1D95C0EB001E5C62 /* BlockTaskTests.swift */; };
+		570C13801D95C1F4001E5C62 /* Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C137F1D95C1F4001E5C62 /* Chaining.swift */; };
 		5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758B27B1D900D3F0060318A /* ReverseApplication.swift */; };
 		57CDEB791D8FEC0D00E78BE5 /* SwiftyTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CDEB6F1D8FEC0D00E78BE5 /* SwiftyTasks.framework */; };
 		57CDEB7E1D8FEC0D00E78BE5 /* SyncTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB7D1D8FEC0D00E78BE5 /* SyncTaskTests.swift */; };
@@ -45,6 +47,8 @@
 		570C13771D95B758001E5C62 /* DemoTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTask.swift; sourceTree = "<group>"; };
 		570C13791D95B761001E5C62 /* TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		570C137B1D95BAB3001E5C62 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		570C137D1D95C0EB001E5C62 /* BlockTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTaskTests.swift; sourceTree = "<group>"; };
+		570C137F1D95C1F4001E5C62 /* Chaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chaining.swift; sourceTree = "<group>"; };
 		5758B27B1D900D3F0060318A /* ReverseApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseApplication.swift; sourceTree = "<group>"; };
 		57CDEB6F1D8FEC0D00E78BE5 /* SwiftyTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57CDEB721D8FEC0D00E78BE5 /* SwiftyTasks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTasks.h; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 				570C13761D95B758001E5C62 /* Support */,
 				57CDEB7D1D8FEC0D00E78BE5 /* SyncTaskTests.swift */,
 				570C13741D95B522001E5C62 /* AsyncTaskTests.swift */,
+				570C137D1D95C0EB001E5C62 /* BlockTaskTests.swift */,
 				570C13721D95B515001E5C62 /* ChainingTests.swift */,
 				57CDEB7F1D8FEC0D00E78BE5 /* Info.plist */,
 			);
@@ -155,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				57CDEB921D8FED2300E78BE5 /* Enqueue.swift */,
+				570C137F1D95C1F4001E5C62 /* Chaining.swift */,
 				57CDEB931D8FED2300E78BE5 /* PartialApplication.swift */,
 				5758B27B1D900D3F0060318A /* ReverseApplication.swift */,
 				57CDEB941D8FED2300E78BE5 /* TaskOperators.swift */,
@@ -296,6 +302,7 @@
 			files = (
 				57CDEB9F1D8FED2300E78BE5 /* PartialApplication.swift in Sources */,
 				57CDEB9E1D8FED2300E78BE5 /* Enqueue.swift in Sources */,
+				570C13801D95C1F4001E5C62 /* Chaining.swift in Sources */,
 				57CDEBA31D8FED2300E78BE5 /* AsyncBlockTask.swift in Sources */,
 				57CDEBA61D8FED2300E78BE5 /* Task.swift in Sources */,
 				57CDEBA51D8FED2300E78BE5 /* BlockTask.swift in Sources */,
@@ -317,6 +324,7 @@
 				570C13781D95B758001E5C62 /* DemoTask.swift in Sources */,
 				57CDEB7E1D8FEC0D00E78BE5 /* SyncTaskTests.swift in Sources */,
 				570C137A1D95B761001E5C62 /* TestUtils.swift in Sources */,
+				570C137E1D95C0EB001E5C62 /* BlockTaskTests.swift in Sources */,
 				570C13751D95B522001E5C62 /* AsyncTaskTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
