@@ -11,7 +11,7 @@ import Foundation
 /// <#Description#>
 public struct AdapterTask<ResultType>: TaskProtocol {
     
-    private let _task: AnyTask
+    private let _tasks: [AnyTask]
     private let _adapter: () throws -> ResultType
     
     /// <#Description#>
@@ -20,8 +20,8 @@ public struct AdapterTask<ResultType>: TaskProtocol {
     /// - parameter adapter: <#adapter description#>
     ///
     /// - returns: <#return value description#>
-    init<P: TaskProtocol>(_ task: P, _ adapter: @escaping () throws -> ResultType) {
-        _task = task
+    init(_ task: AnyTask, _ adapter: @escaping () throws -> ResultType) {
+        _tasks = [task]
         _adapter = adapter
     }
     
@@ -31,14 +31,14 @@ public struct AdapterTask<ResultType>: TaskProtocol {
     /// - parameter adapter: <#adapter description#>
     ///
     /// - returns: <#return value description#>
-    init<P: TaskProtocol>(_ task: P, _ adapter: @escaping (P.ResultType) throws -> ResultType) {
-        _task = task
-        _adapter = { return try adapter(task.getResult()) }
+    init(_ tasks: [AnyTask], _ adapter: @escaping () throws -> ResultType) {
+        _tasks = tasks
+        _adapter = adapter
     }
     
     /// <#Description#>
-    public var backingOperation: Operation {
-        return _task.backingOperation
+    public var backingOperations: [Operation] {
+        return _tasks.flatMap { $0.backingOperations }
     }
     
     /// <#Description#>
@@ -68,6 +68,6 @@ public extension TaskProtocol {
     ///
     /// - returns: <#return value description#>
     public func convert<R>(_ adapter: @escaping (Self.ResultType) throws -> R) -> AdapterTask<R> {
-        return AdapterTask(self, adapter)
+        return AdapterTask(self, { try adapter(self.getResult()) })
     }
 }

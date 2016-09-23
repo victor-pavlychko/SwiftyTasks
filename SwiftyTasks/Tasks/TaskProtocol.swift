@@ -12,7 +12,7 @@ import Foundation
 public protocol AnyTask {
 
     /// <#Description#>
-    var backingOperation: Operation { get }
+    var backingOperations: [Operation] { get }
 }
 
 /// <#Description#>
@@ -34,12 +34,28 @@ public extension AnyTask {
     ///
     /// - parameter completionBlock: <#completionBlock description#>
     func start(_ completionBlock: @escaping () -> Void) {
-        if backingOperation.isAsynchronous {
-            backingOperation.completionBlock = completionBlock
-            backingOperation.start()
-        } else {
-            backingOperation.start()
+        guard !backingOperations.isEmpty else {
             completionBlock()
+            return
+        }
+
+        var counter: Int32 = Int32(backingOperations.count)
+        let countdownBlock = {
+            if (OSAtomicDecrement32Barrier(&counter) == 0) {
+                completionBlock()
+            }
+        }
+        for operation in backingOperations {
+            if operation.isAsynchronous {
+                operation.completionBlock = countdownBlock
+                operation.start()
+            }
+        }
+        for operation in backingOperations {
+            if !operation.isAsynchronous {
+                operation.start()
+                countdownBlock()
+            }
         }
     }
 }
@@ -47,8 +63,8 @@ public extension AnyTask {
 public extension AnyTask where Self: Operation {
 
     /// <#Description#>
-    public var backingOperation: Operation {
-        return self
+    public var backingOperations: [Operation] {
+        return [self]
     }
 }
 

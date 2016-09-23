@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		575693481D90074900106BF1 /* DemoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575693471D90074900106BF1 /* DemoTask.swift */; };
+		5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758B27B1D900D3F0060318A /* ReverseApplication.swift */; };
 		57CDEB791D8FEC0D00E78BE5 /* SwiftyTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CDEB6F1D8FEC0D00E78BE5 /* SwiftyTasks.framework */; };
 		57CDEB7E1D8FEC0D00E78BE5 /* SwiftyTasksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB7D1D8FEC0D00E78BE5 /* SwiftyTasksTests.swift */; };
 		57CDEB801D8FEC0D00E78BE5 /* SwiftyTasks.h in Headers */ = {isa = PBXBuildFile; fileRef = 57CDEB721D8FEC0D00E78BE5 /* SwiftyTasks.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		57CDEB8D1D8FEC6700E78BE5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 57CDEB8A1D8FEC6700E78BE5 /* LICENSE */; };
-		57CDEB8E1D8FEC6700E78BE5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB8B1D8FEC6700E78BE5 /* README.md */; };
-		57CDEB8F1D8FEC6700E78BE5 /* SwiftyTasks.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 57CDEB8C1D8FEC6700E78BE5 /* SwiftyTasks.podspec */; };
 		57CDEB9D1D8FED2300E78BE5 /* OperationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB901D8FED2300E78BE5 /* OperationExtensions.swift */; };
 		57CDEB9E1D8FED2300E78BE5 /* Enqueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB921D8FED2300E78BE5 /* Enqueue.swift */; };
 		57CDEB9F1D8FED2300E78BE5 /* PartialApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB931D8FED2300E78BE5 /* PartialApplication.swift */; };
@@ -37,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		575693471D90074900106BF1 /* DemoTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTask.swift; sourceTree = "<group>"; };
+		5758B27B1D900D3F0060318A /* ReverseApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseApplication.swift; sourceTree = "<group>"; };
 		57CDEB6F1D8FEC0D00E78BE5 /* SwiftyTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57CDEB721D8FEC0D00E78BE5 /* SwiftyTasks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTasks.h; sourceTree = "<group>"; };
 		57CDEB731D8FEC0D00E78BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 			children = (
 				57CDEB921D8FED2300E78BE5 /* Enqueue.swift */,
 				57CDEB931D8FED2300E78BE5 /* PartialApplication.swift */,
+				5758B27B1D900D3F0060318A /* ReverseApplication.swift */,
 				57CDEB941D8FED2300E78BE5 /* TaskOperators.swift */,
 			);
 			path = Operators;
@@ -164,6 +166,7 @@
 		57CDEBAB1D8FF6F000E78BE5 /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				575693471D90074900106BF1 /* DemoTask.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -261,8 +264,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57CDEB8D1D8FEC6700E78BE5 /* LICENSE in Resources */,
-				57CDEB8F1D8FEC6700E78BE5 /* SwiftyTasks.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +282,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				57CDEB9F1D8FED2300E78BE5 /* PartialApplication.swift in Sources */,
-				57CDEB8E1D8FEC6700E78BE5 /* README.md in Sources */,
 				57CDEB9E1D8FED2300E78BE5 /* Enqueue.swift in Sources */,
 				57CDEBA31D8FED2300E78BE5 /* AsyncBlockTask.swift in Sources */,
 				57CDEBA61D8FED2300E78BE5 /* Task.swift in Sources */,
@@ -291,6 +291,7 @@
 				57CDEB9D1D8FED2300E78BE5 /* OperationExtensions.swift in Sources */,
 				57CDEBAA1D8FED8600E78BE5 /* Operators.swift in Sources */,
 				57CDEBA41D8FED2300E78BE5 /* AsyncTask.swift in Sources */,
+				5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */,
 				57CDEBA01D8FED2300E78BE5 /* TaskOperators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57CDEB7E1D8FEC0D00E78BE5 /* SwiftyTasksTests.swift in Sources */,
+				575693481D90074900106BF1 /* DemoTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +498,7 @@
 				57CDEB851D8FEC0D00E78BE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		57CDEB861D8FEC0D00E78BE5 /* Build configuration list for PBXNativeTarget "SwiftyTasksTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +507,7 @@
 				57CDEB881D8FEC0D00E78BE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

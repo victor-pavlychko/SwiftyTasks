@@ -10,7 +10,19 @@ import Foundation
 
 precedencegroup PartialApplicationPrecedence {
     associativity: left
-    higherThan: ComparisonPrecedence
+    higherThan: AssignmentPrecedence
 }
 
-infix operator <- : PartialApplicationPrecedence
+precedencegroup ReverseApplicationPrecedence {
+    associativity: left
+    higherThan: PartialApplicationPrecedence
+}
+
+///
+infix operator <~ : PartialApplicationPrecedence
+
+///
+infix operator ~~ : PartialApplicationPrecedence
+
+///
+infix operator ~> : ReverseApplicationPrecedence
