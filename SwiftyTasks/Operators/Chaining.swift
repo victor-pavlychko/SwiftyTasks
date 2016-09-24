@@ -8,34 +8,34 @@
 
 import Foundation
 
-/// <#Description#>
+/// Attach dependency to an `Operation`
 ///
-/// - parameter lhs: <#lhs description#>
-/// - parameter rhs: <#rhs description#>
+/// - parameter lhs: operation
+/// - parameter rhs: dependency operation
 ///
-/// - returns: <#return value description#>
+/// - returns: `lhs` operation
 public func ~~ <T: Operation, U: Operation> (lhs: T, rhs: U) -> T {
     lhs.addDependency(rhs)
     return lhs
 }
 
-/// <#Description#>
+/// Attach dependency to an `Operation`
 ///
-/// - parameter lhs: <#lhs description#>
-/// - parameter rhs: <#rhs description#>
+/// - parameter lhs: operation
+/// - parameter rhs: dependency task
 ///
-/// - returns: <#return value description#>
+/// - returns: `lhs` operation
 public func ~~ <T: Operation, U: AnyTask> (lhs: T, rhs: U) -> T {
     rhs.backingOperations.forEach(lhs.addDependency)
     return lhs
 }
 
-/// <#Description#>
+/// Attach dependency to a `Task`
 ///
-/// - parameter lhs: <#lhs description#>
-/// - parameter rhs: <#rhs description#>
+/// - parameter lhs: task
+/// - parameter rhs: dependency operation
 ///
-/// - returns: <#return value description#>
+/// - returns: `lhs` task
 public func ~~ <T: AnyTask, U: Operation> (lhs: T, rhs: U) -> T {
     lhs.backingOperations.forEach {
         $0.addDependency(rhs)
@@ -43,12 +43,12 @@ public func ~~ <T: AnyTask, U: Operation> (lhs: T, rhs: U) -> T {
     return lhs
 }
 
-/// <#Description#>
+/// Attach dependency to a `Task`
 ///
-/// - parameter lhs: <#lhs description#>
-/// - parameter rhs: <#rhs description#>
+/// - parameter lhs: task
+/// - parameter rhs: dependency task
 ///
-/// - returns: <#return value description#>
+/// - returns: `lhs` task
 public func ~~ <T: AnyTask, U: AnyTask> (lhs: T, rhs: U) -> T {
     lhs.backingOperations.forEach {
         rhs.backingOperations.forEach($0.addDependency)

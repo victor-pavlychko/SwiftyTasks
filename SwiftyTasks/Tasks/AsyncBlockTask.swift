@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// <#Description#>
+/// The AsyncBlockTask class implements AsyncTask wrapping concrete code block
 public final class AsyncBlockTask<ResultType>: AsyncTask<ResultType> {
 
     private var _block: ((AsyncBlockTask<ResultType>) throws -> Void)!

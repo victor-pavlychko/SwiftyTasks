@@ -11,7 +11,6 @@
 		570C13751D95B522001E5C62 /* AsyncTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C13741D95B522001E5C62 /* AsyncTaskTests.swift */; };
 		570C13781D95B758001E5C62 /* DemoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C13771D95B758001E5C62 /* DemoTask.swift */; };
 		570C137A1D95B761001E5C62 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C13791D95B761001E5C62 /* TestUtils.swift */; };
-		570C137C1D95BAB3001E5C62 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 570C137B1D95BAB3001E5C62 /* .travis.yml */; };
 		570C137E1D95C0EB001E5C62 /* BlockTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C137D1D95C0EB001E5C62 /* BlockTaskTests.swift */; };
 		570C13801D95C1F4001E5C62 /* Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C137F1D95C1F4001E5C62 /* Chaining.swift */; };
 		5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758B27B1D900D3F0060318A /* ReverseApplication.swift */; };
@@ -28,7 +27,6 @@
 		57CDEBA51D8FED2300E78BE5 /* BlockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB9A1D8FED2300E78BE5 /* BlockTask.swift */; };
 		57CDEBA61D8FED2300E78BE5 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB9B1D8FED2300E78BE5 /* Task.swift */; };
 		57CDEBA71D8FED2300E78BE5 /* TaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB9C1D8FED2300E78BE5 /* TaskProtocol.swift */; };
-		57CDEBAA1D8FED8600E78BE5 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEBA91D8FED8600E78BE5 /* Operators.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +56,7 @@
 		57CDEB7F1D8FEC0D00E78BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57CDEB8A1D8FEC6700E78BE5 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		57CDEB8B1D8FEC6700E78BE5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		57CDEB8C1D8FEC6700E78BE5 /* SwiftyTasks.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftyTasks.podspec; sourceTree = "<group>"; };
+		57CDEB8C1D8FEC6700E78BE5 /* SwiftyTasks.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = SwiftyTasks.podspec; sourceTree = "<group>"; };
 		57CDEB901D8FED2300E78BE5 /* OperationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationExtensions.swift; sourceTree = "<group>"; };
 		57CDEB921D8FED2300E78BE5 /* Enqueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enqueue.swift; sourceTree = "<group>"; };
 		57CDEB931D8FED2300E78BE5 /* PartialApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialApplication.swift; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 		57CDEB9A1D8FED2300E78BE5 /* BlockTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTask.swift; sourceTree = "<group>"; };
 		57CDEB9B1D8FED2300E78BE5 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		57CDEB9C1D8FED2300E78BE5 /* TaskProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskProtocol.swift; sourceTree = "<group>"; };
-		57CDEBA91D8FED8600E78BE5 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +121,6 @@
 			children = (
 				57CDEB911D8FED2300E78BE5 /* Operators */,
 				57CDEB961D8FED2300E78BE5 /* Tasks */,
-				57CDEBA81D8FED6400E78BE5 /* Utils */,
 				57CDEB901D8FED2300E78BE5 /* OperationExtensions.swift */,
 				57CDEB721D8FEC0D00E78BE5 /* SwiftyTasks.h */,
 				57CDEB731D8FEC0D00E78BE5 /* Info.plist */,
@@ -179,14 +175,6 @@
 				57CDEB9C1D8FED2300E78BE5 /* TaskProtocol.swift */,
 			);
 			path = Tasks;
-			sourceTree = "<group>";
-		};
-		57CDEBA81D8FED6400E78BE5 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				57CDEBA91D8FED8600E78BE5 /* Operators.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,7 +270,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				570C137C1D95BAB3001E5C62 /* .travis.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +296,6 @@
 				57CDEBA71D8FED2300E78BE5 /* TaskProtocol.swift in Sources */,
 				57CDEBA21D8FED2300E78BE5 /* AdapterTask.swift in Sources */,
 				57CDEB9D1D8FED2300E78BE5 /* OperationExtensions.swift in Sources */,
-				57CDEBAA1D8FED8600E78BE5 /* Operators.swift in Sources */,
 				57CDEBA41D8FED2300E78BE5 /* AsyncTask.swift in Sources */,
 				5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */,
 				57CDEBA01D8FED2300E78BE5 /* TaskOperators.swift in Sources */,

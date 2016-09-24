@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 public func <~ <R, T0> (fn: @escaping (T0) -> R, args: T0) -> () -> R {
     return { fn(args) }
 }

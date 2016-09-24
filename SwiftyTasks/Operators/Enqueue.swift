@@ -8,23 +8,23 @@
 
 import Foundation
 
-/// <#Description#>
+/// Enqueue `Operation` onto `OpetaitonQueue` and return it back
 ///
-/// - parameter lhs: <#lhs description#>
-/// - parameter rhs: <#rhs description#>
+/// - parameter lhs: target queue
+/// - parameter rhs: operation
 ///
-/// - returns: <#return value description#>
+/// - returns: `rhs` operation
 public func += <T: Operation> (lhs: OperationQueue, rhs: T) -> T {
     lhs.addOperation(rhs)
     return rhs
 }
 
-/// <#Description#>
+/// Enqueue `Task` onto `OpetaitonQueue` and return it back
 ///
-/// - parameter lhs: <#lhs description#>
-/// - parameter rhs: <#rhs description#>
+/// - parameter lhs: target queue
+/// - parameter rhs: task
 ///
-/// - returns: <#return value description#>
+/// - returns: `rhs` task
 public func += <T: AnyTask> (lhs: OperationQueue, rhs: T) -> T {
     rhs.backingOperations.forEach(lhs.addOperation)
     return rhs

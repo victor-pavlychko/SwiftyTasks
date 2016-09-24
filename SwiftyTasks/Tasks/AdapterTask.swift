@@ -8,44 +8,64 @@
 
 import Foundation
 
-/// <#Description#>
+/// General-purpose task adapter.
+/// This object will start/wait for all backing operations and
+/// use provided block to copmute result when requested.
 public struct AdapterTask<ResultType>: TaskProtocol {
     
-    private let _tasks: [AnyTask]
     private let _adapter: () throws -> ResultType
+
+    public let backingOperations: [Operation]
     
-    /// <#Description#>
+    /// Creates adapter with a single backing operation
     ///
-    /// - parameter task:    <#task description#>
-    /// - parameter adapter: <#adapter description#>
+    /// - parameter operation: backing operation
+    /// - parameter adapter:   result block
     ///
-    /// - returns: <#return value description#>
+    /// - returns: newly created adapter
+    init(_ operation: Operation, _ adapter: @escaping () throws -> ResultType) {
+        _adapter = adapter
+        backingOperations = [operation]
+    }
+    
+    /// Creates adapter with multiple backing operations
+    ///
+    /// - parameter operations: list of backing operations
+    /// - parameter adapter:    result block
+    ///
+    /// - returns: newly created adapter
+    init(_ operations: [Operation], _ adapter: @escaping () throws -> ResultType) {
+        _adapter = adapter
+        backingOperations = operations
+    }
+    
+    /// Creates adapter with a single backing task
+    ///
+    /// - parameter task:    backing operation
+    /// - parameter adapter: result block
+    ///
+    /// - returns: newly created adapter
     init(_ task: AnyTask, _ adapter: @escaping () throws -> ResultType) {
-        _tasks = [task]
         _adapter = adapter
+        backingOperations = task.backingOperations
     }
     
-    /// <#Description#>
+    /// Creates adapter with multiple backing tasks
     ///
-    /// - parameter task:    <#task description#>
-    /// - parameter adapter: <#adapter description#>
+    /// - parameter tasks:   list of backing operations
+    /// - parameter adapter: result block
     ///
-    /// - returns: <#return value description#>
+    /// - returns: newly created adapter
     init(_ tasks: [AnyTask], _ adapter: @escaping () throws -> ResultType) {
-        _tasks = tasks
         _adapter = adapter
+        backingOperations = tasks.flatMap { $0.backingOperations }
     }
     
-    /// <#Description#>
-    public var backingOperations: [Operation] {
-        return _tasks.flatMap { $0.backingOperations }
-    }
-    
-    /// <#Description#>
+    /// Retrieves result of task execution
     ///
-    /// - throws: <#throws value description#>
+    /// - throws: wrapped error if any
     ///
-    /// - returns: <#return value description#>
+    /// - returns: task result
     public func getResult() throws -> ResultType {
         return try _adapter()
     }
@@ -53,21 +73,22 @@ public struct AdapterTask<ResultType>: TaskProtocol {
 
 public extension TaskProtocol {
     
-    /// <#Description#>
+    /// Converts result of the task using a provided block
     ///
-    /// - parameter adapter: <#adapter description#>
+    /// - parameter adapter: adapter block
     ///
-    /// - returns: <#return value description#>
+    /// - returns: Adapter task wrapping current task
     public func convert<R>(_ adapter: @escaping () throws -> R) -> AdapterTask<R> {
         return AdapterTask(self, adapter)
     }
     
-    /// <#Description#>
+    /// Converts result of the task using a provided block
     ///
-    /// - parameter adapter: <#adapter description#>
+    /// - parameter adapter: adapter block
+    /// - parameter value:   original task result
     ///
-    /// - returns: <#return value description#>
-    public func convert<R>(_ adapter: @escaping (Self.ResultType) throws -> R) -> AdapterTask<R> {
+    /// - returns: Adapter task wrapping current task
+    public func convert<R>(_ adapter: @escaping (_ value: Self.ResultType) throws -> R) -> AdapterTask<R> {
         return AdapterTask(self, { try adapter(self.getResult()) })
     }
 }
