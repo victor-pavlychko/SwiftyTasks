@@ -28,8 +28,8 @@ fileprivate enum AsyncTaskState {
     }
 }
 
-/// Base class for writing custom async Tasks. Extenda Task class
-/// with asynchronous Operation state handling.
+/// Base class for writing custom async Tasks. Extenda `Task` class
+/// with asynchronous `Operation` state handling.
 open class AsyncTask<ResultType>: Task<ResultType> {
     
     private var _state: AsyncTaskState = .created {

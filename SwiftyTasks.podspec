@@ -9,10 +9,12 @@
 Pod::Spec.new do |s|
     s.name                  = 'SwiftyTasks'
     s.version               = '0.0.1'
-    s.summary               = 'Task library for Swift.'
+    s.summary               = 'Pragmatic approach to async tasks in Swift'
 
     s.description           = <<-DESC
-Pragmatic approach to async tasks in Swift.
+SwiftyTask aims to build workflows on top of existing `Operation` infrastructure extending
+it with result/error handling. Any third-parrty `Operation` subclasses can be easily extended
+to support `TaskProtocol` and participate in complex workflows.
                                  DESC
 
     s.homepage              = 'https://github.com/victor-pavlychko/SwiftyTasks'
