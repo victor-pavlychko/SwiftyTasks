@@ -8,29 +8,29 @@
 
 import Foundation
 
-/// <#Description#>
+/// Abstract task
 public protocol AnyTask {
 
-    /// <#Description#>
+    /// List of backing operations
     var backingOperations: [Operation] { get }
 }
 
-/// <#Description#>
+/// Abstract task with result
 public protocol TaskProtocol: AnyTask {
 
     associatedtype ResultType
 
-    /// <#Description#>
+    /// Retrieves tast execution result or error
     ///
-    /// - throws: <#throws value description#>
+    /// - throws: captured error if any
     ///
-    /// - returns: <#return value description#>
+    /// - returns: execution result
     func getResult() throws -> ResultType
 }
 
 extension Operation: AnyTask {
     
-    /// <#Description#>
+    /// List of backing operations which is equal to `[self]` in case of Operation
     public var backingOperations: [Operation] {
         return [self]
     }
@@ -38,9 +38,11 @@ extension Operation: AnyTask {
 
 public extension AnyTask {
 
-    /// <#Description#>
+    /// Starts execution of all backing operation and fires completion block when ready.
+    /// Async operations will run concurrently in background, sync ones will execute one by one
+    /// in current thread.
     ///
-    /// - parameter completionBlock: <#completionBlock description#>
+    /// - parameter completionBlock: Completion block to be fired when everyhting is done
     func start(_ completionBlock: @escaping () -> Void) {
         guard !backingOperations.isEmpty else {
             completionBlock()
@@ -70,10 +72,12 @@ public extension AnyTask {
 
 public extension TaskProtocol {
 
-    /// <#Description#>
+    /// Starts execution of all backing operation and fires completion block when ready.
+    /// Async operations will run concurrently in background, sync ones will execute one by one
+    /// in current thread.
     ///
-    /// - parameter completionBlock: <#completionBlock description#>
-    /// - parameter resultBlock:     <#completionBlock description#>
+    /// - parameter completionBlock: Completion block to be fired when everyhting is done
+    /// - parameter resultBlock:     Result block wrapping task outcome
     func start(_ completionBlock: @escaping (_ resultBlock: () throws -> ResultType) -> Void) {
         start { completionBlock(self.getResult) }
     }

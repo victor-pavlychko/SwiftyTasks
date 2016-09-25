@@ -8,13 +8,17 @@
 
 import Foundation
 
-/// <#Description#>
+/// Internal data structure to store async Operation state
+///
+/// - created:   Task has not yet started,    isExecutiong = false, isFinished = false
+/// - executing: Task is currently executing, isExecutiong = true,  isFinished = false
+/// - finished:  Task has finished,           isExecutiong = false, isFinished = true
 fileprivate enum AsyncTaskState {
     case created
     case executing
     case finished
     
-    /// <#Description#>
+    /// returns KVO keyPath to be notified for specified state
     var keyPath: String? {
         switch self {
         case .created: return nil
@@ -24,7 +28,8 @@ fileprivate enum AsyncTaskState {
     }
 }
 
-/// <#Description#>
+/// Base class for writing custom async Tasks. Extenda Task class
+/// with asynchronous Operation state handling.
 open class AsyncTask<ResultType>: Task<ResultType> {
     
     private var _state: AsyncTaskState = .created {

@@ -8,48 +8,57 @@
 
 import Foundation
 
-/// The AsyncBlockTask class implements AsyncTask wrapping concrete code block
+/// `AsyncTask` subclass to wrap any asynchronous code block into an `AsyncTask`
 public final class AsyncBlockTask<ResultType>: AsyncTask<ResultType> {
 
     private var _block: ((AsyncBlockTask<ResultType>) throws -> Void)!
     
-    /// <#Description#>
+    /// Initializes `AsyncBlockTask` with a code block tacking completion handler with result
     ///
-    /// - parameter block: <#block description#>
+    /// - parameter block:           code block
+    /// - parameter completionBlock: completion handler passed to the code block
+    /// - parameter result:          task result returned from the code block
     ///
-    /// - returns: <#return value description#>
-    init(_ block: @escaping (@escaping (ResultType) -> Void) throws -> Void) {
+    /// - returns: Newly created `AsyncBlockTask` instance
+    init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
-    /// <#Description#>
+    /// Initializes `AsyncBlockTask` with a code block tacking completion handler with optional result and error
     ///
-    /// - parameter block: <#block description#>
+    /// - parameter block:           code block
+    /// - parameter completionBlock: completion handler passed to the code block
+    /// - parameter result:          task result returned from the code block
+    /// - parameter error:           task error returned from the code block
     ///
-    /// - returns: <#return value description#>
-    init(_ block: @escaping (@escaping (ResultType?, Error?) -> Void) throws -> Void) {
+    /// - returns: Newly created `AsyncBlockTask` instance
+    init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType?, _ error: Error?) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
-    /// <#Description#>
+    /// Initializes `AsyncBlockTask` with a code block tacking completion handler with optional result
     ///
-    /// - parameter block: <#block description#>
+    /// - parameter block:           code block
+    /// - parameter completionBlock: completion handler passed to the code block
+    /// - parameter result:          optional task result returned from the code block
     ///
-    /// - returns: <#return value description#>
-    init(_ block: @escaping (@escaping (ResultType?) -> Void) throws -> Void) {
+    /// - returns: Newly created `AsyncBlockTask` instance
+    init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType?) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
-    /// <#Description#>
+    /// Initializes `AsyncBlockTask` with a code block tacking completion handler with a result block
     ///
-    /// - parameter block: <#block description#>
+    /// - parameter block:           code block
+    /// - parameter completionBlock: completion handler passed to the code block
+    /// - parameter resultBlock:     task result returned from the code block
     ///
-    /// - returns: <#return value description#>
-    init(_ block: @escaping (@escaping (() throws -> ResultType) -> Void) throws -> Void) {
+    /// - returns: Newly created `AsyncBlockTask` instance
+    init(_ block: @escaping (_ completionBlock: @escaping (_ resultBlock: () throws -> ResultType) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
-    /// <#Description#>
+    /// Starts execution. Do not call this method yourself.
     public override func main() {
         do {
             try _block(self)

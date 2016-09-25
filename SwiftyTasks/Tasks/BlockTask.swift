@@ -8,36 +8,36 @@
 
 import Foundation
 
-/// <#Description#>
+/// `Task` subclass to wrap any code block into a `Task`
 public final class BlockTask<ResultType>: Task<ResultType> {
     
     private let _block: () throws -> ResultType
 
-    /// <#Description#>
+    /// Initializes `BlockTask` with a throwing block
     ///
-    /// - parameter block: <#block description#>
+    /// - parameter block: code block
     ///
-    /// - returns: <#return value description#>
+    /// - returns: Newly created `BlockTask` instance
     public init(_ block: @escaping () throws -> ResultType) {
         _block = block
     }
     
-    /// <#Description#>
+    /// Initializes `BlockTask` with a block returning optional result
     ///
-    /// - parameter block: <#block description#>
+    /// - parameter block: code block
     ///
-    /// - returns: <#return value description#>
+    /// - returns: Newly created `BlockTask` instance
     public init(_ block: @escaping () -> ResultType?) {
         _block = {
             guard let result = block() else {
-                throw OperationError.badResult
+                throw TaskError.badResult
             }
 
             return result
         }
     }
     
-    /// <#Description#>
+    /// Performs actual execution. Do not call this method yourself.
     public override func main() {
         finish(_block)
     }

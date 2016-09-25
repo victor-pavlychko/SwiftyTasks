@@ -152,7 +152,7 @@ class AsyncTaskTests: XCTestCase {
                 let _ = try task.getResult()
                 XCTFail()
             } catch {
-                XCTAssertEqual(error as? OperationError, OperationError.badResult)
+                XCTAssertEqual(error as? TaskError, TaskError.badResult)
             }
         }
     }
