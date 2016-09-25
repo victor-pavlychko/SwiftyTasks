@@ -34,7 +34,8 @@ class AsyncTaskTests: XCTestCase {
         
         waitForExpectations {
             do {
-                XCTAssertEqual(try task.getResult(), dummyResult)
+                let result = try task.getResult()
+                XCTAssertEqual(result, dummyResult)
             } catch {
                 XCTFail(error.localizedDescription)
             }
@@ -79,7 +80,8 @@ class AsyncTaskTests: XCTestCase {
         
         waitForExpectations {
             do {
-                XCTAssertEqual(try task.getResult(), dummyResult)
+                let result = try task.getResult()
+                XCTAssertEqual(result, dummyResult)
             } catch {
                 XCTFail(error.localizedDescription)
             }
@@ -124,7 +126,8 @@ class AsyncTaskTests: XCTestCase {
         
         waitForExpectations {
             do {
-                XCTAssertEqual(try task.getResult(), dummyResult)
+                let result = try task.getResult()
+                XCTAssertEqual(result, dummyResult)
             } catch {
                 XCTFail(error.localizedDescription)
             }
@@ -169,7 +172,8 @@ class AsyncTaskTests: XCTestCase {
         
         waitForExpectations {
             do {
-                XCTAssertEqual(try task.getResult(), dummyResult)
+                let result = try task.getResult()
+                XCTAssertEqual(result, dummyResult)
             } catch {
                 XCTFail(error.localizedDescription)
             }

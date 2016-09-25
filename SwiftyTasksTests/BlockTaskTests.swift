@@ -29,7 +29,8 @@ class BlockTaskTests: XCTestCase {
         
         waitForExpectations {
             do {
-                XCTAssertEqual(try task.getResult(), dummyResult)
+                let result = try task.getResult()
+                XCTAssertEqual(result, dummyResult)
             } catch {
                 XCTFail(error.localizedDescription)
             }

@@ -35,8 +35,10 @@ class ChainingTests: XCTestCase {
         
         waitForExpectations {
             do {
-                try XCTAssertEqual(task1.getResult(), "Success1")
-                try XCTAssertEqual(task2.getResult(), "Success2")
+                let result1 = try task1.getResult()
+                XCTAssertEqual(result1, "Success1")
+                let result2 = try task2.getResult()
+                XCTAssertEqual(result2, "Success2")
             } catch {
                 XCTFail(error.localizedDescription)
             }
@@ -69,7 +71,8 @@ class ChainingTests: XCTestCase {
         waitForExpectations {
             do {
                 XCTAssert(waitOperation.isFinished)
-                XCTAssertEqual(try task.getResult(), dummyResult)
+                let result = try task.getResult()
+                XCTAssertEqual(result, dummyResult)
             } catch {
                 XCTFail(error.localizedDescription)
             }
