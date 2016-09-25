@@ -28,6 +28,14 @@ public protocol TaskProtocol: AnyTask {
     func getResult() throws -> ResultType
 }
 
+extension Operation: AnyTask {
+    
+    /// <#Description#>
+    public var backingOperations: [Operation] {
+        return [self]
+    }
+}
+
 public extension AnyTask {
 
     /// <#Description#>
@@ -57,14 +65,6 @@ public extension AnyTask {
                 countdownBlock()
             }
         }
-    }
-}
-
-public extension AnyTask where Self: Operation {
-
-    /// <#Description#>
-    public var backingOperations: [Operation] {
-        return [self]
     }
 }
 

@@ -17,28 +17,6 @@ public struct AdapterTask<ResultType>: TaskProtocol {
 
     public let backingOperations: [Operation]
     
-    /// Creates adapter with a single backing operation
-    ///
-    /// - parameter operation: backing operation
-    /// - parameter adapter:   result block
-    ///
-    /// - returns: newly created adapter
-    init(_ operation: Operation, _ adapter: @escaping () throws -> ResultType) {
-        _adapter = adapter
-        backingOperations = [operation]
-    }
-    
-    /// Creates adapter with multiple backing operations
-    ///
-    /// - parameter operations: list of backing operations
-    /// - parameter adapter:    result block
-    ///
-    /// - returns: newly created adapter
-    init(_ operations: [Operation], _ adapter: @escaping () throws -> ResultType) {
-        _adapter = adapter
-        backingOperations = operations
-    }
-    
     /// Creates adapter with a single backing task
     ///
     /// - parameter task:    backing operation

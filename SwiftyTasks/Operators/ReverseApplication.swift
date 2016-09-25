@@ -8,28 +8,28 @@
 
 import Foundation
 
-public func ~> <R> (args: Operation, fn: @escaping () -> R) -> AdapterTask<R> {
+public func ~> <R> (args: AnyTask, fn: @escaping () -> R) -> AdapterTask<R> {
     return AdapterTask([args]) { fn() }
 }
 
-public func ~> <R> (args: (Operation, Operation), fn: @escaping () -> R) -> AdapterTask<R> {
+public func ~> <R> (args: (AnyTask, AnyTask), fn: @escaping () -> R) -> AdapterTask<R> {
     return AdapterTask([args.0, args.1]) { fn() }
 }
 
-public func ~> <R> (args: (Operation, Operation, Operation), fn: @escaping () -> R) -> AdapterTask<R> {
+public func ~> <R> (args: (AnyTask, AnyTask, AnyTask), fn: @escaping () -> R) -> AdapterTask<R> {
     return AdapterTask([args.0, args.1, args.2]) { fn() }
 }
 
 
-public func ~> <R, T0: Operation> (args: T0, fn: @escaping (T0) -> R) -> AdapterTask<R> {
+public func ~> <R, T0: AnyTask> (args: T0, fn: @escaping (T0) -> R) -> AdapterTask<R> {
     return AdapterTask([args]) { fn(args) }
 }
 
-public func ~> <R, T0: Operation, T1: Operation> (args: (T0, T1), fn: @escaping (T0, T1) -> R) -> AdapterTask<R> {
+public func ~> <R, T0: AnyTask, T1: AnyTask> (args: (T0, T1), fn: @escaping (T0, T1) -> R) -> AdapterTask<R> {
     return AdapterTask([args.0, args.1]) { fn(args.0, args.1) }
 }
 
-public func ~> <R, T0: Operation, T1: Operation, T2: Operation> (args: (T0, T1, T2), fn: @escaping (T0, T1, T2) -> R) -> AdapterTask<R> {
+public func ~> <R, T0: AnyTask, T1: AnyTask, T2: AnyTask> (args: (T0, T1, T2), fn: @escaping (T0, T1, T2) -> R) -> AdapterTask<R> {
     return AdapterTask([args.0, args.1, args.2]) { fn(args.0, args.1, args.2) }
 }
 
