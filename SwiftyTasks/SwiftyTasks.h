@@ -6,7 +6,7 @@
 //  Copyright © 2016 address.wtf. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for SwiftyTasks.
 FOUNDATION_EXPORT double SwiftyTasksVersionNumber;

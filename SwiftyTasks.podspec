@@ -22,5 +22,4 @@ Pragmatic approach to async tasks in Swift.
     s.social_media_url      = 'https://twitter.com/victorpavlychko'
     s.ios.deployment_target = '8.0'
     s.source_files          = 'SwiftyTasks/**/*'
-#    s.frameworks              = 'UIKit'
 end
