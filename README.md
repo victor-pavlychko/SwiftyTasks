@@ -1,9 +1,11 @@
 # SwiftyTasks
 
 [![CI Status](http://img.shields.io/travis/victor-pavlychko/SwiftyTasks.svg?style=flat)](https://travis-ci.org/victor-pavlychko/SwiftyTasks)
-[![Version](https://img.shields.io/cocoapods/v/SwiftyTasks.svg?style=flat)](http://cocoapods.org/pods/SwiftyTasks)
-[![License](https://img.shields.io/badge/license-MIT-3b3b3b.svg?style=flat)](https://github.com/victor-pavlychko/SwiftyTasks/blob/master/LICENSE)
-[![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat)](https://github.com/victor-pavlychko/SwiftyTasks)
+[![Pod Version](https://img.shields.io/cocoapods/v/SwiftyTasks.svg?style=flat)](http://cocoapods.org/pods/SwiftyTasks)
+[![Carthage: compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![License: MIT](https://img.shields.io/badge/license-MIT-3b3b3b.svg?style=flat)](https://github.com/victor-pavlychko/SwiftyTasks/blob/master/LICENSE)
+[![Swift: 3.0](https://img.shields.io/badge/swift-3.0-orange.svg?style=flat)](https://github.com/victor-pavlychko/SwiftyTasks)
+[![Platform: iOS](https://img.shields.io/badge/platform-ios-lightgrey.svg?style=flat)](https://github.com/victor-pavlychko/SwiftyTasks)
 
 ## Overview
 

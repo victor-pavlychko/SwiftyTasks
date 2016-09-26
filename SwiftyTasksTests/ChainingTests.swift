@@ -45,6 +45,10 @@ class ChainingTests: XCTestCase {
         }
     }
     
+    func concatenateTask(s1: String, s2: String) -> DemoTask<String> {
+        return DemoTask(.success(s1 + s2))
+    }
+    
     func testComplexChain() {
         
         let waitQueue = OperationQueue()
@@ -60,19 +64,28 @@ class ChainingTests: XCTestCase {
         let taskPart2 = taskQueue
             += DemoAsyncTask.init(_:)
             <~ .success("cess")
-
-        let task = taskQueue
+        
+        let task1 = taskQueue
+            += concatenateTask(s1:s2:)
+            <~ taskPart1
+            <~ taskPart2
+            ~~ waitOperation
+        
+        let task2 = taskQueue
             += DemoTask.init(_:)
             <~ (taskPart1, taskPart2) ~> { .success($0 + $1) }
             ~~ waitOperation
-        
-        expectation(task: task)
+
+        expectation(task: task1)
+        expectation(task: task2)
         
         waitForExpectations {
             do {
                 XCTAssert(waitOperation.isFinished)
-                let result = try task.getResult()
-                XCTAssertEqual(result, dummyResult)
+                let result1 = try task1.getResult()
+                XCTAssertEqual(result1, dummyResult)
+                let result2 = try task2.getResult()
+                XCTAssertEqual(result2, dummyResult)
             } catch {
                 XCTFail(error.localizedDescription)
             }
