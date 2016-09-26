@@ -48,6 +48,8 @@
 		570C137D1D95C0EB001E5C62 /* BlockTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTaskTests.swift; sourceTree = "<group>"; };
 		570C137F1D95C1F4001E5C62 /* Chaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chaining.swift; sourceTree = "<group>"; };
 		5758B27B1D900D3F0060318A /* ReverseApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseApplication.swift; sourceTree = "<group>"; };
+		57BBEA991D9956F80069EDE8 /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
+		57BBEA9A1D9956F80069EDE8 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		57CDEB6F1D8FEC0D00E78BE5 /* SwiftyTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57CDEB721D8FEC0D00E78BE5 /* SwiftyTasks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTasks.h; sourceTree = "<group>"; };
 		57CDEB731D8FEC0D00E78BE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,7 +146,9 @@
 		57CDEB891D8FEC5C00E78BE5 /* Meta */ = {
 			isa = PBXGroup;
 			children = (
+				57BBEA9A1D9956F80069EDE8 /* .gitignore */,
 				570C137B1D95BAB3001E5C62 /* .travis.yml */,
+				57BBEA991D9956F80069EDE8 /* .swift-version */,
 				57CDEB8A1D8FEC6700E78BE5 /* LICENSE */,
 				57CDEB8B1D8FEC6700E78BE5 /* README.md */,
 				57CDEB8C1D8FEC6700E78BE5 /* SwiftyTasks.podspec */,
