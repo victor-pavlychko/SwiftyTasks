@@ -8,59 +8,6 @@
 
 import Foundation
 
-/// Defines possible errors originating from SwiftyTasks library itself
-///
-/// - genericError: Generic error. You should never get this...
-/// - badResult:    Operation returned `nil` for both result and error
-/// - noResult:     Operation failed to provide result or error (probably it has not finished yey)
-public enum TaskError: Error {
-    case genericError
-    case badResult
-    case noResult
-}
-
-/// Internal data structure to hold task execution outcome
-///
-/// - none:    No result, similat ro Optional.none
-/// - success: Task finished successfully with a result
-/// - error:   Task failed with an error
-fileprivate enum TaskResult<ResultType> {
-    case none
-    case success(ResultType)
-    case error(Error)
-
-    /// Initializes `TaskResult` with optional result and error
-    ///
-    /// - parameter result: optional result
-    /// - parameter error:  optional error
-    ///
-    /// - returns: task result wrapping provided data
-    init(result: ResultType?, error: Error? = nil) {
-        if let error = error {
-            self = .error(error)
-            return
-        }
-        if let result = result {
-            self = .success(result)
-            return
-        }
-        self = .error(TaskError.badResult)
-    }
-
-    /// Initializes `TaskResult` using provided result block
-    ///
-    /// - parameter result: result block
-    ///
-    /// - returns: task result wrapping provided data
-    init(_ result: () throws -> ResultType) {
-        do {
-            self = .success(try result())
-        } catch {
-            self = .error(error)
-        }
-    }
-}
-
 /// Base class for writing custom Tasks. Provides result handling and
 /// removes dependencies on start to lower memory use.
 open class Task<ResultType>: Operation, TaskProtocol {
@@ -73,11 +20,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     ///
     /// - returns: execution result
     public func getResult() throws -> ResultType {
-        switch _result {
-        case .none: throw TaskError.noResult
-        case .success(let result): return result
-        case .error(let error): throw error
-        }
+        return try _result.get()
     }
 
     /// Marks task as finished with the result

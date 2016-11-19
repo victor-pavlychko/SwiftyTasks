@@ -56,16 +56,8 @@ public extension AnyTask {
             }
         }
         for operation in backingOperations {
-            if operation.isAsynchronous {
-                operation.completionBlock = countdownBlock
-                operation.start()
-            }
-        }
-        for operation in backingOperations {
-            if !operation.isAsynchronous {
-                operation.start()
-                countdownBlock()
-            }
+            operation.completionBlock = countdownBlock
+            operation.start()
         }
     }
 }

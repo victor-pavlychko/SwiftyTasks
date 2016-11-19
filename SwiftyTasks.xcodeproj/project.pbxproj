@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5700CCEF1DE08CAA00652F9C /* TaskResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700CCEE1DE08CAA00652F9C /* TaskResult.swift */; };
+		5700CCF11DE08CDA00652F9C /* TaskError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700CCF01DE08CDA00652F9C /* TaskError.swift */; };
 		570C13731D95B515001E5C62 /* ChainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C13721D95B515001E5C62 /* ChainingTests.swift */; };
 		570C13751D95B522001E5C62 /* AsyncTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C13741D95B522001E5C62 /* AsyncTaskTests.swift */; };
 		570C13781D95B758001E5C62 /* DemoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C13771D95B758001E5C62 /* DemoTask.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5700CCEE1DE08CAA00652F9C /* TaskResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskResult.swift; sourceTree = "<group>"; };
+		5700CCF01DE08CDA00652F9C /* TaskError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskError.swift; sourceTree = "<group>"; };
 		570C13721D95B515001E5C62 /* ChainingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChainingTests.swift; sourceTree = "<group>"; };
 		570C13741D95B522001E5C62 /* AsyncTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncTaskTests.swift; sourceTree = "<group>"; };
 		570C13771D95B758001E5C62 /* DemoTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoTask.swift; sourceTree = "<group>"; };
@@ -176,7 +180,9 @@
 				57CDEB991D8FED2300E78BE5 /* AsyncTask.swift */,
 				57CDEB9A1D8FED2300E78BE5 /* BlockTask.swift */,
 				57CDEB9B1D8FED2300E78BE5 /* Task.swift */,
+				5700CCF01DE08CDA00652F9C /* TaskError.swift */,
 				57CDEB9C1D8FED2300E78BE5 /* TaskProtocol.swift */,
+				5700CCEE1DE08CAA00652F9C /* TaskResult.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 				57CDEB9F1D8FED2300E78BE5 /* PartialApplication.swift in Sources */,
 				57CDEB9E1D8FED2300E78BE5 /* Enqueue.swift in Sources */,
 				570C13801D95C1F4001E5C62 /* Chaining.swift in Sources */,
+				5700CCF11DE08CDA00652F9C /* TaskError.swift in Sources */,
 				57CDEBA31D8FED2300E78BE5 /* AsyncBlockTask.swift in Sources */,
 				57CDEBA61D8FED2300E78BE5 /* Task.swift in Sources */,
 				57CDEBA51D8FED2300E78BE5 /* BlockTask.swift in Sources */,
@@ -301,6 +308,7 @@
 				57CDEBA21D8FED2300E78BE5 /* AdapterTask.swift in Sources */,
 				57CDEB9D1D8FED2300E78BE5 /* OperationExtensions.swift in Sources */,
 				57CDEBA41D8FED2300E78BE5 /* AsyncTask.swift in Sources */,
+				5700CCEF1DE08CAA00652F9C /* TaskResult.swift in Sources */,
 				5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */,
 				57CDEBA01D8FED2300E78BE5 /* TaskOperators.swift in Sources */,
 			);
