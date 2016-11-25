@@ -12,7 +12,7 @@ import Foundation
 /// removes dependencies on start to lower memory use.
 open class Task<ResultType>: Operation, TaskProtocol {
 
-    private var _result: TaskResult<ResultType> = .none
+    private var _result = Pending<ResultType>()
 
     /// Retrieves tast execution result or error
     ///
@@ -27,7 +27,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     ///
     /// - parameter result: result value
     public func finish(result: ResultType) {
-        _result = .success(result)
+        _result.set(result: result)
         finish()
     }
 
@@ -35,7 +35,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     ///
     /// - parameter result: error value
     public func finish(error: Error) {
-        _result = .error(error)
+        _result.set(error: error)
         finish()
     }
 
@@ -44,7 +44,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     /// - parameter result: optional result value
     /// - parameter error:  optional error value
     public func finish(result: ResultType?, error: Error?) {
-        _result = .init(result: result, error: error)
+        _result.set(result: result, error: error)
         finish()
     }
     
@@ -53,7 +53,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     ///
     /// - parameter result: optional result value
     public func finish(result: ResultType?) {
-        _result = .init(result: result)
+        _result.set(result: result)
         finish()
     }
     
@@ -61,7 +61,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     ///
     /// - parameter result: result block
     public func finish(_ result: () throws -> ResultType) {
-        _result = .init(result)
+        _result.set(result)
         finish()
     }
     
@@ -69,7 +69,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     ///
     /// - parameter result: result block
     public func finish(_ result: @autoclosure () throws -> ResultType) {
-        _result = .init(result)
+        _result.set(result)
         finish()
     }
 
