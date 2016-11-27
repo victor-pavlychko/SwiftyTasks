@@ -15,18 +15,16 @@ public final class BlockTask<ResultType>: Task<ResultType> {
 
     /// Initializes `BlockTask` with a throwing block
     ///
-    /// - parameter block: code block
-    ///
-    /// - returns: Newly created `BlockTask` instance
+    /// - Parameter block: code block
+    /// - Returns: Newly created `BlockTask` instance
     public init(_ block: @escaping () throws -> ResultType) {
         _block = block
     }
     
     /// Initializes `BlockTask` with a block returning optional result
     ///
-    /// - parameter block: code block
-    ///
-    /// - returns: Newly created `BlockTask` instance
+    /// - Parameter block: code block
+    /// - Returns: Newly created `BlockTask` instance
     public init(_ block: @escaping () -> ResultType?) {
         _block = {
             guard let result = block() else {

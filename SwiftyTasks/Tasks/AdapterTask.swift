@@ -19,10 +19,10 @@ public struct AdapterTask<ResultType>: TaskProtocol {
     
     /// Creates adapter with a single backing task
     ///
-    /// - parameter task:    backing operation
-    /// - parameter adapter: result block
-    ///
-    /// - returns: newly created adapter
+    /// - Parameters:
+    ///   - task:    backing operation
+    ///   - adapter: result block
+    /// - Returns: newly created adapter
     init(_ task: AnyTask, _ adapter: @escaping () throws -> ResultType) {
         _adapter = adapter
         backingOperations = task.backingOperations
@@ -30,10 +30,10 @@ public struct AdapterTask<ResultType>: TaskProtocol {
     
     /// Creates adapter with multiple backing tasks
     ///
-    /// - parameter tasks:   list of backing operations
-    /// - parameter adapter: result block
-    ///
-    /// - returns: newly created adapter
+    /// - Parameters:
+    ///   - tasks:   list of backing operations
+    ///   - adapter: result block
+    /// - Returns: newly created adapter
     init(_ tasks: [AnyTask], _ adapter: @escaping () throws -> ResultType) {
         _adapter = adapter
         backingOperations = tasks.flatMap { $0.backingOperations }
@@ -41,9 +41,8 @@ public struct AdapterTask<ResultType>: TaskProtocol {
     
     /// Retrieves result of task execution
     ///
-    /// - throws: wrapped error if any
-    ///
-    /// - returns: task result
+    /// - Throws: wrapped error if any
+    /// - Returns: task result
     public func getResult() throws -> ResultType {
         return try _adapter()
     }
@@ -53,19 +52,18 @@ public extension TaskProtocol {
     
     /// Converts result of the task using a provided block
     ///
-    /// - parameter adapter: adapter block
-    ///
-    /// - returns: Adapter task wrapping current task
+    /// - Parameter adapter: adapter block
+    /// - Returns: Adapter task wrapping current task
     public func convert<R>(_ adapter: @escaping () throws -> R) -> AdapterTask<R> {
         return AdapterTask(self, adapter)
     }
     
     /// Converts result of the task using a provided block
     ///
-    /// - parameter adapter: adapter block
-    /// - parameter value:   original task result
-    ///
-    /// - returns: Adapter task wrapping current task
+    /// - Parameters:
+    ///   - adapter: adapter block
+    ///   - value:   original task result
+    /// - Returns: Adapter task wrapping current task
     public func convert<R>(_ adapter: @escaping (_ value: Self.ResultType) throws -> R) -> AdapterTask<R> {
         return AdapterTask(self, { try adapter(self.getResult()) })
     }

@@ -10,10 +10,10 @@ import Foundation
 
 /// Attach dependency to a `Task`
 ///
-/// - parameter lhs: task
-/// - parameter rhs: dependency task
-///
-/// - returns: `lhs` task
+/// - Parameters:
+///   - lhs: task
+///   - rhs: dependency task
+/// - Returns: `lhs` task
 public func ~~ <T: AnyTask, U: AnyTask> (lhs: T, rhs: U) -> T {
     lhs.backingOperations.forEach { operation in
         rhs.backingOperations.forEach { dependency in

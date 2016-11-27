@@ -13,7 +13,7 @@ import Foundation
 /// - none:    No value, similar to Optional.none
 /// - success: Pending value was computed successfully
 /// - error:   Computation failed with an error
-enum PendingState<ValueType> {
+fileprivate enum PendingState<ValueType> {
     case none
     case success(ValueType)
     case error(Error)

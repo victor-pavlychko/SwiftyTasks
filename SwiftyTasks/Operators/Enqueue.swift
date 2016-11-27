@@ -10,10 +10,10 @@ import Foundation
 
 /// Enqueue `Task` onto `OpetaitonQueue` and return it back
 ///
-/// - parameter lhs: target queue
-/// - parameter rhs: task
-///
-/// - returns: `rhs` task
+/// - Parameters:
+///   - lhs: target queue
+///   - rhs: task
+/// - Returns: `rhs` task
 public func += <T: AnyTask> (lhs: OperationQueue, rhs: T) -> T {
     rhs.backingOperations.forEach { operation in
         lhs.addOperation(operation)

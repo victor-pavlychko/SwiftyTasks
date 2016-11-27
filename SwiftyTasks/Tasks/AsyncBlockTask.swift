@@ -15,45 +15,45 @@ public final class AsyncBlockTask<ResultType>: AsyncTask<ResultType> {
     
     /// Initializes `AsyncBlockTask` with a code block tacking completion handler with result
     ///
-    /// - parameter block:           code block
-    /// - parameter completionBlock: completion handler passed to the code block
-    /// - parameter result:          task result returned from the code block
-    ///
-    /// - returns: Newly created `AsyncBlockTask` instance
+    /// - Parameters:
+    ///   - block:           code block
+    ///   - completionBlock: completion handler passed to the code block
+    ///   - result:          task result returned from the code block
+    /// - Returns: Newly created `AsyncBlockTask` instance
     init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
     /// Initializes `AsyncBlockTask` with a code block tacking completion handler with optional result and error
     ///
-    /// - parameter block:           code block
-    /// - parameter completionBlock: completion handler passed to the code block
-    /// - parameter result:          task result returned from the code block
-    /// - parameter error:           task error returned from the code block
-    ///
-    /// - returns: Newly created `AsyncBlockTask` instance
+    /// - Parameters:
+    ///   - block:           code block
+    ///   - completionBlock: completion handler passed to the code block
+    ///   - result:          task result returned from the code block
+    ///   - error:           task error returned from the code block
+    /// - Returns: Newly created `AsyncBlockTask` instance
     init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType?, _ error: Error?) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
     /// Initializes `AsyncBlockTask` with a code block tacking completion handler with optional result
     ///
-    /// - parameter block:           code block
-    /// - parameter completionBlock: completion handler passed to the code block
-    /// - parameter result:          optional task result returned from the code block
-    ///
-    /// - returns: Newly created `AsyncBlockTask` instance
+    /// - Parameters:
+    ///   - block:           code block
+    ///   - completionBlock: completion handler passed to the code block
+    ///   - result:          optional task result returned from the code block
+    /// - Returns: Newly created `AsyncBlockTask` instance
     init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType?) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
     /// Initializes `AsyncBlockTask` with a code block tacking completion handler with a result block
     ///
-    /// - parameter block:           code block
-    /// - parameter completionBlock: completion handler passed to the code block
-    /// - parameter resultBlock:     task result returned from the code block
-    ///
-    /// - returns: Newly created `AsyncBlockTask` instance
+    /// - Parameters:
+    ///   - block:           code block
+    ///   - completionBlock: completion handler passed to the code block
+    ///   - resultBlock:     task result returned from the code block
+    /// - Returns: Newly created `AsyncBlockTask` instance
     init(_ block: @escaping (_ completionBlock: @escaping (_ resultBlock: () throws -> ResultType) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }

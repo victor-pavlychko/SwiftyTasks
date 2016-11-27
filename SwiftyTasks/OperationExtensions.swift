@@ -17,14 +17,14 @@ public extension Operation {
     
     /// Bulk add dependencies
     ///
-    /// - parameter ops: list of dependencies to add
+    /// - Parameter ops: list of dependencies to add
     public func addDependencies<S: Sequence>(_ ops: S) where S.Iterator.Element: Operation {
         ops.forEach(addDependency)
     }
 
     /// Bulk remove dependencies
     ///
-    /// - parameter ops: list of dependencies to add
+    /// - Parameter ops: list of dependencies to add
     public func removeDependencies<S: Sequence>(_ ops: S) where S.Iterator.Element: Operation {
         ops.forEach(removeDependency)
     }

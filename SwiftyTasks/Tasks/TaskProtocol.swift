@@ -22,9 +22,8 @@ public protocol TaskProtocol: AnyTask {
 
     /// Retrieves tast execution result or error
     ///
-    /// - throws: captured error if any
-    ///
-    /// - returns: execution result
+    /// - Throws: captured error if any
+    /// - Returns: execution result
     func getResult() throws -> ResultType
 }
 
@@ -42,7 +41,7 @@ public extension AnyTask {
     /// Async operations will run concurrently in background, sync ones will execute one by one
     /// in current thread.
     ///
-    /// - parameter completionBlock: Completion block to be fired when everyhting is done
+    /// - Parameter completionBlock: Completion block to be fired when everyhting is done
     func start(_ completionBlock: @escaping () -> Void) {
         guard !backingOperations.isEmpty else {
             completionBlock()
@@ -68,8 +67,9 @@ public extension TaskProtocol {
     /// Async operations will run concurrently in background, sync ones will execute one by one
     /// in current thread.
     ///
-    /// - parameter completionBlock: Completion block to be fired when everyhting is done
-    /// - parameter resultBlock:     Result block wrapping task outcome
+    /// - Parameters:
+    ///   - completionBlock: Completion block to be fired when everyhting is done
+    ///   - resultBlock:     Result block wrapping task outcome
     func start(_ completionBlock: @escaping (_ resultBlock: () throws -> ResultType) -> Void) {
         start { completionBlock(self.getResult) }
     }
