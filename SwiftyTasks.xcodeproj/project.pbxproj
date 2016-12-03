@@ -16,6 +16,10 @@
 		570C13801D95C1F4001E5C62 /* Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C137F1D95C1F4001E5C62 /* Chaining.swift */; };
 		571C3A5C1DE8DFB500E1EB89 /* Pending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571C3A5B1DE8DFB500E1EB89 /* Pending.swift */; };
 		5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758B27B1D900D3F0060318A /* ReverseApplication.swift */; };
+		57896FC01DEB842A0016845E /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57896FBC1DEB842A0016845E /* Channel.swift */; };
+		57896FC11DEB842A0016845E /* ChannelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57896FBD1DEB842A0016845E /* ChannelProtocols.swift */; };
+		57896FC21DEB842A0016845E /* InputPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57896FBE1DEB842A0016845E /* InputPin.swift */; };
+		57896FC31DEB842A0016845E /* OutputPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57896FBF1DEB842A0016845E /* OutputPin.swift */; };
 		57CDEB791D8FEC0D00E78BE5 /* SwiftyTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CDEB6F1D8FEC0D00E78BE5 /* SwiftyTasks.framework */; };
 		57CDEB7E1D8FEC0D00E78BE5 /* SyncTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB7D1D8FEC0D00E78BE5 /* SyncTaskTests.swift */; };
 		57CDEB801D8FEC0D00E78BE5 /* SwiftyTasks.h in Headers */ = {isa = PBXBuildFile; fileRef = 57CDEB721D8FEC0D00E78BE5 /* SwiftyTasks.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -53,6 +57,10 @@
 		570C137F1D95C1F4001E5C62 /* Chaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chaining.swift; sourceTree = "<group>"; };
 		571C3A5B1DE8DFB500E1EB89 /* Pending.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pending.swift; sourceTree = "<group>"; };
 		5758B27B1D900D3F0060318A /* ReverseApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseApplication.swift; sourceTree = "<group>"; };
+		57896FBC1DEB842A0016845E /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		57896FBD1DEB842A0016845E /* ChannelProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelProtocols.swift; sourceTree = "<group>"; };
+		57896FBE1DEB842A0016845E /* InputPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPin.swift; sourceTree = "<group>"; };
+		57896FBF1DEB842A0016845E /* OutputPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputPin.swift; sourceTree = "<group>"; };
 		57BBEA991D9956F80069EDE8 /* .swift-version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
 		57BBEA9A1D9956F80069EDE8 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		57CDEB6F1D8FEC0D00E78BE5 /* SwiftyTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +113,17 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		57896FBB1DEB842A0016845E /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				57896FBC1DEB842A0016845E /* Channel.swift */,
+				57896FBD1DEB842A0016845E /* ChannelProtocols.swift */,
+				57896FBE1DEB842A0016845E /* InputPin.swift */,
+				57896FBF1DEB842A0016845E /* OutputPin.swift */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
 		57CDEB651D8FEC0D00E78BE5 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +146,7 @@
 		57CDEB711D8FEC0D00E78BE5 /* SwiftyTasks */ = {
 			isa = PBXGroup;
 			children = (
+				57896FBB1DEB842A0016845E /* Channels */,
 				57CDEB911D8FED2300E78BE5 /* Operators */,
 				57CDEB961D8FED2300E78BE5 /* Tasks */,
 				57DD5F421DE61FB600CC8798 /* Utils */,
@@ -308,7 +328,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57896FC11DEB842A0016845E /* ChannelProtocols.swift in Sources */,
+				57896FC31DEB842A0016845E /* OutputPin.swift in Sources */,
 				57CDEB9F1D8FED2300E78BE5 /* PartialApplication.swift in Sources */,
+				57896FC01DEB842A0016845E /* Channel.swift in Sources */,
 				57CDEB9E1D8FED2300E78BE5 /* Enqueue.swift in Sources */,
 				570C13801D95C1F4001E5C62 /* Chaining.swift in Sources */,
 				5700CCF11DE08CDA00652F9C /* TaskError.swift in Sources */,
@@ -318,6 +341,7 @@
 				57CDEBA51D8FED2300E78BE5 /* BlockTask.swift in Sources */,
 				57CDEBA71D8FED2300E78BE5 /* TaskProtocol.swift in Sources */,
 				57CDEBA21D8FED2300E78BE5 /* AdapterTask.swift in Sources */,
+				57896FC21DEB842A0016845E /* InputPin.swift in Sources */,
 				57CDEB9D1D8FED2300E78BE5 /* OperationExtensions.swift in Sources */,
 				57CDEBA41D8FED2300E78BE5 /* AsyncTask.swift in Sources */,
 				571C3A5C1DE8DFB500E1EB89 /* Pending.swift in Sources */,
