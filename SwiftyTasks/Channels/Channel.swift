@@ -19,8 +19,15 @@ public final class Channel<Element>: OutputChannel, Sequence, IteratorProtocol {
     /// <#Description#>
     ///
     /// - Parameter bufferSize: <#bufferSize description#>
-    public init(bufferSize: Int = 0) {
-        _bufferLimit = bufferSize + 1
+    public init(bufferSize: Int? = 0) {
+        switch bufferSize {
+        case .none:
+            _bufferLimit = Int.max
+        case let .some(bufferSize) where bufferSize >= 0:
+            _bufferLimit = bufferSize + 1
+        default:
+            fatalError()
+        }
     }
 
     /// <#Description#>
