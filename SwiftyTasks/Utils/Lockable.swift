@@ -15,6 +15,7 @@ internal extension DispatchSemaphore {
     /// - Parameter block: The block to be executed
     /// - Returns: Block execution result
     /// - Throws: Rethrows block error
+    @inline(__always)
     func sync<T>(execute block: () throws -> T) rethrows -> T {
         wait()
         defer { signal() }
@@ -22,27 +23,14 @@ internal extension DispatchSemaphore {
     }
 }
 
-internal extension NSLock {
+internal extension NSLocking {
     
     /// Synchronizes block execution on an `NSLock` and waits until that block completes.
     ///
     /// - Parameter block: The block to be executed
     /// - Returns: Block execution result
     /// - Throws: Rethrows block error
-    func sync<T>(execute block: () throws -> T) rethrows -> T {
-        lock()
-        defer { unlock() }
-        return try block()
-    }
-}
-
-internal extension NSCondition {
-    
-    /// Synchronizes block execution on an `NSCondition` and waits until that block completes.
-    ///
-    /// - Parameter block: The block to be executed
-    /// - Returns: Block execution result
-    /// - Throws: Rethrows block error
+    @inline(__always)
     func sync<T>(execute block: () throws -> T) rethrows -> T {
         lock()
         defer { unlock() }

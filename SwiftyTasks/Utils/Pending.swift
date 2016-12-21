@@ -22,7 +22,7 @@ fileprivate enum PendingState<ValueType> {
 /// Data structure to hold pending computation result
 public final class Pending<ValueType> {
     
-    private var _result = PendingState<ValueType>.none
+    private var _state = PendingState<ValueType>.none
     private let _condition = NSCondition()
     
     /// Sets `Pending` to optional result or error
@@ -32,15 +32,15 @@ public final class Pending<ValueType> {
     ///   - error: optional error
     public func set(result: ValueType? = nil, error: Error? = nil) {
         _condition.sync {
-            guard case .none = _result else {
+            guard case .none = _state else {
                 fatalError()
             }
             if let error = error {
-                _result = .error(error)
+                _state = .error(error)
             } else if let result = result {
-                _result = .success(result)
+                _state = .success(result)
             } else {
-                _result = .error(TaskError.badResult)
+                _state = .error(TaskError.badResult)
             }
             _condition.broadcast()
         }
@@ -51,13 +51,13 @@ public final class Pending<ValueType> {
     /// - Parameter result: result block
     public func set(_ result: () throws -> ValueType) {
         _condition.sync {
-            guard case .none = _result else {
+            guard case .none = _state else {
                 fatalError()
             }
             do {
-                _result = .success(try result())
+                _state = .success(try result())
             } catch {
-                _result = .error(error)
+                _state = .error(error)
             }
             _condition.broadcast()
         }
@@ -66,7 +66,7 @@ public final class Pending<ValueType> {
     /// Checks if the value has already been set
     public var isReady: Bool {
         return _condition.sync {
-            switch _result {
+            switch _state {
             case .none: return false
             case .success, .error: return true
             }
@@ -80,7 +80,7 @@ public final class Pending<ValueType> {
     public func get() throws -> ValueType {
         return try _condition.sync {
             while true {
-                switch _result {
+                switch _state {
                 case .none: _condition.wait()
                 case .success(let result): return result
                 case .error(let error): throw error
@@ -88,11 +88,11 @@ public final class Pending<ValueType> {
             }
         }
     }
-    
+
     /// Waits until value is set
     public func wait() {
         _condition.sync {
-            while case .none = _result {
+            while case .none = _state {
                 _condition.wait()
             }
         }

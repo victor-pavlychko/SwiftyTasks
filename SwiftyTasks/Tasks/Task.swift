@@ -12,7 +12,7 @@ import Foundation
 /// removes dependencies on start to lower memory use.
 open class Task<ResultType>: Operation, TaskProtocol {
 
-    private var _result = Pending<ResultType>()
+    private let _result = Pending<ResultType>()
 
     /// Retrieves tast execution result or error
     ///
@@ -21,7 +21,15 @@ open class Task<ResultType>: Operation, TaskProtocol {
     public func getResult() throws -> ResultType {
         return try _result.get()
     }
-
+    
+    /// Retrieves tast execution result or error
+    ///
+    /// - Throws: captured error if any
+    /// - Returns: execution result
+    public func wait() {
+        _result.wait()
+    }
+    
     /// Marks task as finished with the result
     ///
     /// - Parameter result: result value

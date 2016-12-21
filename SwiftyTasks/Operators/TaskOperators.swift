@@ -31,9 +31,9 @@ infix operator <~ : PartialApplicationPrecedence
 infix operator ~~ : PartialApplicationPrecedence
 
 // We do not define `~>` operator because stdlib aready did that for it's weird reasons...
-/*
+#if false
 
- precedencegroup ReverseApplicationPrecedence {
+precedencegroup ReverseApplicationPrecedence {
     associativity: left
     higherThan: PartialApplicationPrecedence
 }
@@ -46,4 +46,4 @@ infix operator ~~ : PartialApplicationPrecedence
 /// - Returns: `rhs` with arguments bound to `lhs`
 infix operator ~> : ReverseApplicationPrecedence
 
-*/
+#endif

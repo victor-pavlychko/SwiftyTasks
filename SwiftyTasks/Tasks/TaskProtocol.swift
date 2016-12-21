@@ -54,6 +54,7 @@ public extension AnyTask {
                 completionBlock()
             }
         }
+
         for operation in backingOperations {
             operation.completionBlock = countdownBlock
             operation.start()
