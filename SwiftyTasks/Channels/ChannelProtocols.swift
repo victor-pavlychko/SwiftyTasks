@@ -12,45 +12,15 @@ import Foundation
 public protocol OutputChannel {
     
     /// <#Description#>
-    associatedtype ElementType
+    associatedtype Element
     
     /// <#Description#>
     ///
     /// - Parameter element: <#element description#>
     /// - Returns: <#return value description#>
     @discardableResult
-    func send(_ element: ElementType) -> Bool
+    func send(_ element: Element) -> Bool
     
     /// <#Description#>
     func close()
-}
-
-/// <#Description#>
-public protocol InputChannel: Sequence, IteratorProtocol {
-    
-    /// <#Description#>
-    associatedtype ElementType
-    
-    /// <#Description#>
-    ///
-    /// - Returns: <#return value description#>
-    func recv() -> ElementType?
-}
-
-// <#Description#>
-extension InputChannel {
-    
-    /// <#Description#>
-    ///
-    /// - Returns: <#return value description#>
-    public func makeIterator() -> Self {
-        return self
-    }
-
-    /// <#Description#>
-    ///
-    /// - Returns: <#return value description#>
-    public func next() -> ElementType? {
-        return recv()
-    }
 }

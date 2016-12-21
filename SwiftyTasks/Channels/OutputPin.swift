@@ -9,17 +9,17 @@
 import Foundation
 
 /// <#Description#>
-public final class OutputPin<ElementType>: OutputChannel {
+public final class OutputPin<Element>: OutputChannel {
     
     private var _attached = false
-    private var _send: ((ElementType) -> Bool)?
+    private var _send: ((Element) -> Bool)?
     private var _close: (() -> Void)?
     private let _condition = NSCondition()
     
     /// <#Description#>
     ///
     /// - Parameter channel: <#channel description#>
-    public func attach<T: OutputChannel>(_ channel: T?) where T.ElementType == ElementType {
+    public func attach<T: OutputChannel>(_ channel: T?) where T.Element == Element {
         _condition.sync {
             guard !_attached else {
                 fatalError()
@@ -35,7 +35,7 @@ public final class OutputPin<ElementType>: OutputChannel {
     ///
     /// - Parameter element: <#element description#>
     /// - Returns: <#return value description#>
-    public func send(_ element: ElementType) -> Bool {
+    public func send(_ element: Element) -> Bool {
         return _condition.sync {
             while true {
                 guard _attached else {

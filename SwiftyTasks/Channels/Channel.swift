@@ -9,10 +9,10 @@
 import Foundation
 
 /// <#Description#>
-public final class Channel<ElementType>: OutputChannel, InputChannel {
+public final class Channel<Element>: OutputChannel, Sequence, IteratorProtocol {
 
     private var _active = true
-    private var _buffer: [ElementType] = []
+    private var _buffer: [Element] = []
     private let _bufferLimit: Int
     private let _condition = NSCondition()
 
@@ -28,7 +28,7 @@ public final class Channel<ElementType>: OutputChannel, InputChannel {
     /// - Parameter element: <#element description#>
     /// - Returns: <#return value description#>
     @discardableResult
-    public func send(_ element: ElementType) -> Bool {
+    public func send(_ element: Element) -> Bool {
         return _condition.sync {
             while true {
                 guard _active else {
@@ -59,7 +59,7 @@ public final class Channel<ElementType>: OutputChannel, InputChannel {
     /// <#Description#>
     ///
     /// - Returns: <#return value description#>
-    public func recv() -> ElementType? {
+    public func next() -> Element? {
         return _condition.sync {
             while true {
                 guard _active else {
