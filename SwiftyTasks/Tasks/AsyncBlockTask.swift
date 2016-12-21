@@ -20,7 +20,7 @@ public final class AsyncBlockTask<ResultType>: AsyncTask<ResultType> {
     ///   - completionBlock: completion handler passed to the code block
     ///   - result:          task result returned from the code block
     /// - Returns: Newly created `AsyncBlockTask` instance
-    init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType) -> Void) throws -> Void) {
+    public init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
@@ -32,7 +32,7 @@ public final class AsyncBlockTask<ResultType>: AsyncTask<ResultType> {
     ///   - result:          task result returned from the code block
     ///   - error:           task error returned from the code block
     /// - Returns: Newly created `AsyncBlockTask` instance
-    init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType?, _ error: Error?) -> Void) throws -> Void) {
+    public init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType?, _ error: Error?) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
@@ -43,7 +43,7 @@ public final class AsyncBlockTask<ResultType>: AsyncTask<ResultType> {
     ///   - completionBlock: completion handler passed to the code block
     ///   - result:          optional task result returned from the code block
     /// - Returns: Newly created `AsyncBlockTask` instance
-    init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType?) -> Void) throws -> Void) {
+    public init(_ block: @escaping (_ completionBlock: @escaping (_ result: ResultType?) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     
@@ -54,7 +54,7 @@ public final class AsyncBlockTask<ResultType>: AsyncTask<ResultType> {
     ///   - completionBlock: completion handler passed to the code block
     ///   - resultBlock:     task result returned from the code block
     /// - Returns: Newly created `AsyncBlockTask` instance
-    init(_ block: @escaping (_ completionBlock: @escaping (_ resultBlock: () throws -> ResultType) -> Void) throws -> Void) {
+    public init(_ block: @escaping (_ completionBlock: @escaping (_ resultBlock: () throws -> ResultType) -> Void) throws -> Void) {
         _block = { try block($0.finish) }
     }
     

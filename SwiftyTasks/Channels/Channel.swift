@@ -15,11 +15,11 @@ public final class Channel<Element>: OutputChannel, Sequence, IteratorProtocol {
     private var _buffer: [Element] = []
     private let _bufferLimit: Int
     private let _condition = NSCondition()
-
+    
     /// <#Description#>
     ///
     /// - Parameter bufferSize: <#bufferSize description#>
-    init(bufferSize: Int = 0) {
+    public init(bufferSize: Int = 0) {
         _bufferLimit = bufferSize + 1
     }
 

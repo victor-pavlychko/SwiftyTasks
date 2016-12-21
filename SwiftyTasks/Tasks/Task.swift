@@ -18,7 +18,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     ///
     /// - Throws: captured error if any
     /// - Returns: execution result
-    public func getResult() throws -> ResultType {
+    public final func getResult() throws -> ResultType {
         return try _result.get()
     }
     
@@ -26,14 +26,14 @@ open class Task<ResultType>: Operation, TaskProtocol {
     ///
     /// - Throws: captured error if any
     /// - Returns: execution result
-    public func wait() {
+    public final func wait() {
         _result.wait()
     }
     
     /// Marks task as finished with the result
     ///
     /// - Parameter result: result value
-    public func finish(result: ResultType) {
+    public final func finish(result: ResultType) {
         _result.set(result: result)
         finish()
     }
@@ -41,7 +41,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     /// Marks task as finished with the error
     ///
     /// - Parameter result: error value
-    public func finish(error: Error) {
+    public final func finish(error: Error) {
         _result.set(error: error)
         finish()
     }
@@ -51,7 +51,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     /// - Parameters:
     ///   - result: optional result value
     ///   - error:  optional error value
-    public func finish(result: ResultType?, error: Error?) {
+    public final func finish(result: ResultType?, error: Error?) {
         _result.set(result: result, error: error)
         finish()
     }
@@ -60,7 +60,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     /// Error will be set to TaskError.badResult if `nil` is provided
     ///
     /// - Parameter result: optional result value
-    public func finish(result: ResultType?) {
+    public final func finish(result: ResultType?) {
         _result.set(result: result)
         finish()
     }
@@ -68,7 +68,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     /// Marks task as finished with result taken from the block
     ///
     /// - Parameter result: result block
-    public func finish(_ result: () throws -> ResultType) {
+    public final func finish(_ result: () throws -> ResultType) {
         _result.set(result)
         finish()
     }
@@ -76,7 +76,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     /// Marks task as finished with result taken from the block
     ///
     /// - Parameter result: result block
-    public func finish(_ result: @autoclosure () throws -> ResultType) {
+    public final func finish(_ result: @autoclosure () throws -> ResultType) {
         _result.set(result)
         finish()
     }

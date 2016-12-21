@@ -42,7 +42,7 @@ public extension AnyTask {
     /// in current thread.
     ///
     /// - Parameter completionBlock: Completion block to be fired when everyhting is done
-    func start(_ completionBlock: @escaping () -> Void) {
+    public func start(_ completionBlock: @escaping () -> Void) {
         guard !backingOperations.isEmpty else {
             completionBlock()
             return
@@ -71,7 +71,7 @@ public extension TaskProtocol {
     /// - Parameters:
     ///   - completionBlock: Completion block to be fired when everyhting is done
     ///   - resultBlock:     Result block wrapping task outcome
-    func start(_ completionBlock: @escaping (_ resultBlock: () throws -> ResultType) -> Void) {
+    public func start(_ completionBlock: @escaping (_ resultBlock: () throws -> ResultType) -> Void) {
         start { completionBlock(self.getResult) }
     }
 }

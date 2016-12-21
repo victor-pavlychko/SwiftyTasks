@@ -51,10 +51,10 @@ open class AsyncTask<ResultType>: Task<ResultType> {
         }
     }
 
-    open override var isConcurrent: Bool { return true }
-    open override var isAsynchronous: Bool { return true }
-    open override var isExecuting: Bool { return _state == .executing }
-    open override var isFinished: Bool { return _state == .finished }
+    public final override var isConcurrent: Bool { return true }
+    public final override var isAsynchronous: Bool { return true }
+    public final override var isExecuting: Bool { return _state == .executing }
+    public final override var isFinished: Bool { return _state == .finished }
 
     open override func start() {
         _state = .executing
