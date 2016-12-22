@@ -15,7 +15,11 @@ public final class OutputPin<Element>: OutputChannel {
     private var _send: ((Element) -> Bool)?
     private var _close: (() -> Void)?
     private let _condition = NSCondition()
-    
+
+    /// <#Description#>
+    public init() {
+    }
+
     /// <#Description#>
     ///
     /// - Parameter channel: <#channel description#>

@@ -14,6 +14,10 @@ public final class InputPin<Element>: Sequence, IteratorProtocol {
     private var _attached = false
     private var _next: (() -> Element?)?
     private let _condition = NSCondition()
+    
+    /// <#Description#>
+    public init() {
+    }
 
     /// <#Description#>
     ///

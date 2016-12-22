@@ -14,6 +14,7 @@ import Foundation
 ///   - lhs: target queue
 ///   - rhs: task
 /// - Returns: `rhs` task
+@discardableResult
 public func += <T: AnyTask> (lhs: OperationQueue, rhs: T) -> T {
     rhs.backingOperations.forEach { operation in
         lhs.addOperation(operation)
