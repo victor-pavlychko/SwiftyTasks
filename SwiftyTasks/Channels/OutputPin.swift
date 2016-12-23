@@ -39,6 +39,7 @@ public final class OutputPin<Element>: OutputChannel {
     ///
     /// - Parameter element: <#element description#>
     /// - Returns: <#return value description#>
+    @discardableResult
     public func send(_ element: Element) -> Bool {
         return _condition.sync {
             while true {
