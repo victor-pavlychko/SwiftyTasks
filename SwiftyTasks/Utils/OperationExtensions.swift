@@ -8,24 +8,24 @@
 
 import Foundation
 
-public extension Operation {
+internal extension Operation {
     
     /// Removes all depencencies attached to this Operations
-    public func purgeDependencies() {
+    internal func purgeDependencies() {
         dependencies.forEach(removeDependency)
     }
     
     /// Bulk add dependencies
     ///
     /// - Parameter ops: list of dependencies to add
-    public func addDependencies<S: Sequence>(_ ops: S) where S.Iterator.Element: Operation {
+    internal func addDependencies<S: Sequence>(_ ops: S) where S.Iterator.Element: Operation {
         ops.forEach(addDependency)
     }
 
     /// Bulk remove dependencies
     ///
     /// - Parameter ops: list of dependencies to add
-    public func removeDependencies<S: Sequence>(_ ops: S) where S.Iterator.Element: Operation {
+    internal func removeDependencies<S: Sequence>(_ ops: S) where S.Iterator.Element: Operation {
         ops.forEach(removeDependency)
     }
 }
