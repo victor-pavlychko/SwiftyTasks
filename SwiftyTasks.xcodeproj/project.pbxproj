@@ -15,6 +15,9 @@
 		570C137E1D95C0EB001E5C62 /* BlockTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C137D1D95C0EB001E5C62 /* BlockTaskTests.swift */; };
 		570C13801D95C1F4001E5C62 /* Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C137F1D95C1F4001E5C62 /* Chaining.swift */; };
 		571C3A5C1DE8DFB500E1EB89 /* Pending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571C3A5B1DE8DFB500E1EB89 /* Pending.swift */; };
+		5752EA8E1E0E6C8C00B20D83 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA8D1E0E6C8C00B20D83 /* ArrayExtensions.swift */; };
+		5752EA911E0E6F4300B20D83 /* PartialApplicationTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA8F1E0E6F4300B20D83 /* PartialApplicationTasks.swift */; };
+		5752EA921E0E6F4300B20D83 /* PartialApplicationFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA901E0E6F4300B20D83 /* PartialApplicationFunctions.swift */; };
 		5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758B27B1D900D3F0060318A /* ReverseApplication.swift */; };
 		57896FC01DEB842A0016845E /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57896FBC1DEB842A0016845E /* Channel.swift */; };
 		57896FC11DEB842A0016845E /* OutputChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57896FBD1DEB842A0016845E /* OutputChannel.swift */; };
@@ -27,7 +30,6 @@
 		57CDEB801D8FEC0D00E78BE5 /* SwiftyTasks.h in Headers */ = {isa = PBXBuildFile; fileRef = 57CDEB721D8FEC0D00E78BE5 /* SwiftyTasks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		57CDEB9D1D8FED2300E78BE5 /* OperationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB901D8FED2300E78BE5 /* OperationExtensions.swift */; };
 		57CDEB9E1D8FED2300E78BE5 /* Enqueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB921D8FED2300E78BE5 /* Enqueue.swift */; };
-		57CDEB9F1D8FED2300E78BE5 /* PartialApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB931D8FED2300E78BE5 /* PartialApplication.swift */; };
 		57CDEBA01D8FED2300E78BE5 /* TaskOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB941D8FED2300E78BE5 /* TaskOperators.swift */; };
 		57CDEBA21D8FED2300E78BE5 /* AdapterTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB971D8FED2300E78BE5 /* AdapterTask.swift */; };
 		57CDEBA31D8FED2300E78BE5 /* AsyncBlockTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CDEB981D8FED2300E78BE5 /* AsyncBlockTask.swift */; };
@@ -58,6 +60,9 @@
 		570C137D1D95C0EB001E5C62 /* BlockTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTaskTests.swift; sourceTree = "<group>"; };
 		570C137F1D95C1F4001E5C62 /* Chaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chaining.swift; sourceTree = "<group>"; };
 		571C3A5B1DE8DFB500E1EB89 /* Pending.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pending.swift; sourceTree = "<group>"; };
+		5752EA8D1E0E6C8C00B20D83 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		5752EA8F1E0E6F4300B20D83 /* PartialApplicationTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialApplicationTasks.swift; sourceTree = "<group>"; };
+		5752EA901E0E6F4300B20D83 /* PartialApplicationFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialApplicationFunctions.swift; sourceTree = "<group>"; };
 		5758B27B1D900D3F0060318A /* ReverseApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseApplication.swift; sourceTree = "<group>"; };
 		57896FBC1DEB842A0016845E /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		57896FBD1DEB842A0016845E /* OutputChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputChannel.swift; sourceTree = "<group>"; };
@@ -78,7 +83,6 @@
 		57CDEB8C1D8FEC6700E78BE5 /* SwiftyTasks.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = SwiftyTasks.podspec; sourceTree = "<group>"; };
 		57CDEB901D8FED2300E78BE5 /* OperationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationExtensions.swift; sourceTree = "<group>"; };
 		57CDEB921D8FED2300E78BE5 /* Enqueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enqueue.swift; sourceTree = "<group>"; };
-		57CDEB931D8FED2300E78BE5 /* PartialApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialApplication.swift; sourceTree = "<group>"; };
 		57CDEB941D8FED2300E78BE5 /* TaskOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskOperators.swift; sourceTree = "<group>"; };
 		57CDEB971D8FED2300E78BE5 /* AdapterTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdapterTask.swift; sourceTree = "<group>"; };
 		57CDEB981D8FED2300E78BE5 /* AsyncBlockTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncBlockTask.swift; sourceTree = "<group>"; };
@@ -192,9 +196,10 @@
 		57CDEB911D8FED2300E78BE5 /* Operators */ = {
 			isa = PBXGroup;
 			children = (
-				57CDEB921D8FED2300E78BE5 /* Enqueue.swift */,
 				570C137F1D95C1F4001E5C62 /* Chaining.swift */,
-				57CDEB931D8FED2300E78BE5 /* PartialApplication.swift */,
+				57CDEB921D8FED2300E78BE5 /* Enqueue.swift */,
+				5752EA901E0E6F4300B20D83 /* PartialApplicationFunctions.swift */,
+				5752EA8F1E0E6F4300B20D83 /* PartialApplicationTasks.swift */,
 				5758B27B1D900D3F0060318A /* ReverseApplication.swift */,
 				57CDEB941D8FED2300E78BE5 /* TaskOperators.swift */,
 			);
@@ -218,6 +223,7 @@
 		57DD5F421DE61FB600CC8798 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5752EA8D1E0E6C8C00B20D83 /* ArrayExtensions.swift */,
 				57DD5F441DE61FB600CC8798 /* Lockable.swift */,
 				571C3A5B1DE8DFB500E1EB89 /* Pending.swift */,
 			);
@@ -336,9 +342,10 @@
 			files = (
 				57896FC11DEB842A0016845E /* OutputChannel.swift in Sources */,
 				57896FC31DEB842A0016845E /* OutputPin.swift in Sources */,
-				57CDEB9F1D8FED2300E78BE5 /* PartialApplication.swift in Sources */,
 				57896FC01DEB842A0016845E /* Channel.swift in Sources */,
 				57CDEB9E1D8FED2300E78BE5 /* Enqueue.swift in Sources */,
+				5752EA8E1E0E6C8C00B20D83 /* ArrayExtensions.swift in Sources */,
+				5752EA921E0E6F4300B20D83 /* PartialApplicationFunctions.swift in Sources */,
 				570C13801D95C1F4001E5C62 /* Chaining.swift in Sources */,
 				5700CCF11DE08CDA00652F9C /* TaskError.swift in Sources */,
 				57CDEBA31D8FED2300E78BE5 /* AsyncBlockTask.swift in Sources */,
@@ -353,6 +360,7 @@
 				57CDEB9D1D8FED2300E78BE5 /* OperationExtensions.swift in Sources */,
 				57CDEBA41D8FED2300E78BE5 /* AsyncTask.swift in Sources */,
 				571C3A5C1DE8DFB500E1EB89 /* Pending.swift in Sources */,
+				5752EA911E0E6F4300B20D83 /* PartialApplicationTasks.swift in Sources */,
 				5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */,
 				57CDEBA01D8FED2300E78BE5 /* TaskOperators.swift in Sources */,
 			);
