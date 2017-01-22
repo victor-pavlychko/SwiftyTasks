@@ -29,3 +29,12 @@ internal extension Operation {
         ops.forEach(removeDependency)
     }
 }
+
+internal extension OperationQueue {
+    
+    internal static let serviceQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = Int.max
+        return queue
+    }()
+}

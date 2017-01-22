@@ -56,11 +56,8 @@ public extension AnyTask {
         }
 
         for operation in backingOperations {
-            guard operation.isReady && !operation.isExecuting && !operation.isCancelled && !operation.isFinished else {
-                fatalError()
-            }
             operation.completionBlock = countdownBlock
-            operation.start()
+            OperationQueue.serviceQueue += operation
         }
     }
 }
