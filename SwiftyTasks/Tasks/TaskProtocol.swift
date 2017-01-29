@@ -48,17 +48,18 @@ public extension AnyTask {
             return
         }
 
-        var counter: Int32 = Int32(backingOperations.count)
-        let countdownBlock = {
-            if (OSAtomicDecrement32Barrier(&counter) == 0) {
-                completionBlock()
-            }
-        }
+        let completionTask = BlockTask(completionBlock)
 
         for operation in backingOperations {
-            operation.completionBlock = countdownBlock
+            guard !operation.isExecuting && !operation.isFinished else {
+                fatalError()
+            }
+
+            completionTask.addDependency(operation)
             OperationQueue.serviceQueue += operation
         }
+
+        OperationQueue.serviceQueue += completionTask
     }
 }
 
