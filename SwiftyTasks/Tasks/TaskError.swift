@@ -17,4 +17,5 @@ public enum TaskError: Error {
     case genericError
     case badResult
     case noResult
+    case cancelled
 }

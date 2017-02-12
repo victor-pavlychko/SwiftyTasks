@@ -47,19 +47,14 @@ public extension AnyTask {
             completionBlock()
             return
         }
-
-        let completionTask = BlockTask(completionBlock)
-
+        OperationQueue.serviceQueue += self
+        OperationQueue.serviceQueue += BlockTask(completionBlock) ~~ self
+    }
+    
+    public func cancel() {
         for operation in backingOperations {
-            guard !operation.isExecuting && !operation.isFinished else {
-                fatalError()
-            }
-
-            completionTask.addDependency(operation)
-            OperationQueue.serviceQueue += operation
+            operation.cancel()
         }
-
-        OperationQueue.serviceQueue += completionTask
     }
 }
 

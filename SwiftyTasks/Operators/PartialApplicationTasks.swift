@@ -35,7 +35,7 @@ public func <~ <R, P0, T1, T2> (fn: @escaping (P0.ResultType, T1, T2) throws -> 
 // MARK: task + value
 
 public func <~ <R, T0> (fn: @escaping (T0) throws -> R, args: T0) -> Task<R.ResultType> where R: TaskProtocol {
-    return AsyncBlockTask { completion in try fn(args).start(completion) }
+    return FactoryTask { try fn(args) }
 }
 
 public func <~ <R, T0, T1> (fn: @escaping (T0, T1) throws -> R, args: T0) -> TaskPartialApplication1<R, T1> where R: TaskProtocol {
@@ -49,7 +49,7 @@ public func <~ <R, T0, T1, T2> (fn: @escaping (T0, T1, T2) throws -> R, args: T0
 // MARK: task + task
 
 public func <~ <R, P0> (fn: @escaping (P0.ResultType) throws -> R, args: P0) -> Task<R.ResultType> where R: TaskProtocol, P0: TaskProtocol {
-    return AsyncBlockTask { completion in try fn(args.getResult()).start(completion) } ~~ args
+    return FactoryTask { try fn(args.getResult()) } ~~ args
 }
 
 public func <~ <R, P0, T1> (fn: @escaping (P0.ResultType, T1) throws -> R, args: P0) -> TaskPartialApplication1<R, T1> where R: TaskProtocol, P0: TaskProtocol {
@@ -63,7 +63,7 @@ public func <~ <R, P0, T1, T2> (fn: @escaping (P0.ResultType, T1, T2) throws -> 
 // MARK: partial + value
 
 public func <~ <R, T0> (app: TaskPartialApplication1<R, T0>, args: T0) -> Task<R.ResultType> {
-    return AsyncBlockTask { completion in try app.fn(args).start(completion) } ~~ app.deps
+    return FactoryTask { try app.fn(args) } ~~ app.deps
 }
 
 public func <~ <R, T0, T1> (app: TaskPartialApplication2<R, T0, T1>, args: T0) -> TaskPartialApplication1<R, T1> {
@@ -73,7 +73,7 @@ public func <~ <R, T0, T1> (app: TaskPartialApplication2<R, T0, T1>, args: T0) -
 // MARK: partial + task
 
 public func <~ <R, P0> (app: TaskPartialApplication1<R, P0.ResultType>, args: P0) -> Task<R.ResultType> where P0: TaskProtocol {
-    return AsyncBlockTask { completion in try app.fn(args.getResult()).start(completion) } ~~ app.deps ~~ args
+    return FactoryTask { try app.fn(args.getResult()) } ~~ app.deps ~~ args
 }
 
 public func <~ <R, P0, T1> (app: TaskPartialApplication2<R, P0.ResultType, T1>, args: P0) -> TaskPartialApplication1<R, T1> where P0: TaskProtocol {

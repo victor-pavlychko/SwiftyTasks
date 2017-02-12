@@ -12,7 +12,11 @@ import Foundation
 public final class AsyncBlockTask<ResultType>: AsyncTask<ResultType> {
 
     private var _block: ((AsyncBlockTask<ResultType>) throws -> Void)!
-    
+
+    public init(_ block: @escaping (AsyncBlockTask<ResultType>) throws -> Void) {
+        _block = block
+    }
+
     /// Initializes `AsyncBlockTask` with a code block tacking completion handler with result
     ///
     /// - Parameters:

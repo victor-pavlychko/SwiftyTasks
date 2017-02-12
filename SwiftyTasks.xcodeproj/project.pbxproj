@@ -20,6 +20,10 @@
 		5752EA941E0E764000B20D83 /* OperationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA931E0E764000B20D83 /* OperationExtensions.swift */; };
 		5752EA961E0E767400B20D83 /* Pending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA951E0E767400B20D83 /* Pending.swift */; };
 		5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758B27B1D900D3F0060318A /* ReverseApplication.swift */; };
+		578681781E4B29890031768A /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578681771E4B29890031768A /* Interest.swift */; };
+		5786817A1E4B29A60031768A /* Interesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578681791E4B29A60031768A /* Interesting.swift */; };
+		5786817C1E4B29AE0031768A /* Inetrested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786817B1E4B29AE0031768A /* Inetrested.swift */; };
+		5786817E1E4B5FCE0031768A /* FactoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786817D1E4B5FCE0031768A /* FactoryTask.swift */; };
 		57896FC01DEB842A0016845E /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57896FBC1DEB842A0016845E /* Channel.swift */; };
 		57896FC11DEB842A0016845E /* OutputChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57896FBD1DEB842A0016845E /* OutputChannel.swift */; };
 		57896FC21DEB842A0016845E /* InputPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57896FBE1DEB842A0016845E /* InputPin.swift */; };
@@ -64,6 +68,10 @@
 		5752EA931E0E764000B20D83 /* OperationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationExtensions.swift; sourceTree = "<group>"; };
 		5752EA951E0E767400B20D83 /* Pending.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pending.swift; sourceTree = "<group>"; };
 		5758B27B1D900D3F0060318A /* ReverseApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseApplication.swift; sourceTree = "<group>"; };
+		578681771E4B29890031768A /* Interest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
+		578681791E4B29A60031768A /* Interesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interesting.swift; sourceTree = "<group>"; };
+		5786817B1E4B29AE0031768A /* Inetrested.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inetrested.swift; sourceTree = "<group>"; };
+		5786817D1E4B5FCE0031768A /* FactoryTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactoryTask.swift; sourceTree = "<group>"; };
 		57896FBC1DEB842A0016845E /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		57896FBD1DEB842A0016845E /* OutputChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputChannel.swift; sourceTree = "<group>"; };
 		57896FBE1DEB842A0016845E /* InputPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPin.swift; sourceTree = "<group>"; };
@@ -119,6 +127,16 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		578681761E4B29890031768A /* Interest */ = {
+			isa = PBXGroup;
+			children = (
+				5786817B1E4B29AE0031768A /* Inetrested.swift */,
+				578681771E4B29890031768A /* Interest.swift */,
+				578681791E4B29A60031768A /* Interesting.swift */,
+			);
+			path = Interest;
+			sourceTree = "<group>";
+		};
 		57896FBB1DEB842A0016845E /* Channels */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				57896FBB1DEB842A0016845E /* Channels */,
+				578681761E4B29890031768A /* Interest */,
 				57CDEB911D8FED2300E78BE5 /* Operators */,
 				57CDEB961D8FED2300E78BE5 /* Tasks */,
 				57DD5F421DE61FB600CC8798 /* Utils */,
@@ -210,6 +229,7 @@
 				57CDEB981D8FED2300E78BE5 /* AsyncBlockTask.swift */,
 				57CDEB991D8FED2300E78BE5 /* AsyncTask.swift */,
 				57CDEB9A1D8FED2300E78BE5 /* BlockTask.swift */,
+				5786817D1E4B5FCE0031768A /* FactoryTask.swift */,
 				57CDEB9B1D8FED2300E78BE5 /* Task.swift */,
 				5700CCF01DE08CDA00652F9C /* TaskError.swift */,
 				57CDEB9C1D8FED2300E78BE5 /* TaskProtocol.swift */,
@@ -338,6 +358,7 @@
 			files = (
 				57896FC11DEB842A0016845E /* OutputChannel.swift in Sources */,
 				57896FC31DEB842A0016845E /* OutputPin.swift in Sources */,
+				5786817C1E4B29AE0031768A /* Inetrested.swift in Sources */,
 				57896FC01DEB842A0016845E /* Channel.swift in Sources */,
 				57CDEB9E1D8FED2300E78BE5 /* Enqueue.swift in Sources */,
 				5752EA8E1E0E6C8C00B20D83 /* ArrayExtensions.swift in Sources */,
@@ -345,6 +366,7 @@
 				570C13801D95C1F4001E5C62 /* Chaining.swift in Sources */,
 				5700CCF11DE08CDA00652F9C /* TaskError.swift in Sources */,
 				57CDEBA31D8FED2300E78BE5 /* AsyncBlockTask.swift in Sources */,
+				578681781E4B29890031768A /* Interest.swift in Sources */,
 				57B5FD591E0D4A860068781B /* InputChannel.swift in Sources */,
 				57DD5F471DE61FB600CC8798 /* Lockable.swift in Sources */,
 				57CDEBA61D8FED2300E78BE5 /* Task.swift in Sources */,
@@ -355,10 +377,12 @@
 				5752EA941E0E764000B20D83 /* OperationExtensions.swift in Sources */,
 				57896FC21DEB842A0016845E /* InputPin.swift in Sources */,
 				57CDEBA41D8FED2300E78BE5 /* AsyncTask.swift in Sources */,
+				5786817E1E4B5FCE0031768A /* FactoryTask.swift in Sources */,
 				5752EA911E0E6F4300B20D83 /* PartialApplicationTasks.swift in Sources */,
 				5752EA961E0E767400B20D83 /* Pending.swift in Sources */,
 				5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */,
 				57CDEBA01D8FED2300E78BE5 /* TaskOperators.swift in Sources */,
+				5786817A1E4B29A60031768A /* Interesting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +428,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -457,6 +482,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

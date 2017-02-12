@@ -15,12 +15,12 @@ import Foundation
 ///   - rhs: dependency task
 /// - Returns: `lhs` task
 public func ~~ <T, U> (lhs: T, rhs: U) -> T where T: AnyTask, U: AnyTask {
-    lhs.backingOperations.forEach { operation in
-        rhs.backingOperations.forEach { dependency in
+    for operation in lhs.backingOperations {
+        for dependency in rhs.backingOperations {
             operation.addDependency(dependency)
+            operation.addInterest(dependency.interest)
         }
     }
-    
     return lhs
 }
 
@@ -31,13 +31,13 @@ public func ~~ <T, U> (lhs: T, rhs: U) -> T where T: AnyTask, U: AnyTask {
 ///   - rhs: dependency tasks
 /// - Returns: `lhs` task
 public func ~~ <T, S> (lhs: T, rhs: S) -> T where T: AnyTask, S: Sequence, S.Iterator.Element == AnyTask {
-    lhs.backingOperations.forEach { operation in
-        rhs.forEach { dependencyTask in
-            dependencyTask.backingOperations.forEach { dependencyOperation in
-                operation.addDependency(dependencyOperation)
+    for operation in lhs.backingOperations {
+        for dependencyTask in rhs {
+            for dependency in dependencyTask.backingOperations {
+                operation.addDependency(dependency)
+                operation.addInterest(dependency.interest)
             }
         }
     }
-
     return lhs
 }
