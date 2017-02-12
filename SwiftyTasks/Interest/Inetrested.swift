@@ -45,4 +45,13 @@ public extension Interested {
     }
 }
 
+public extension Interested {
+    
+    @discardableResult
+    public func addInterest<T>(_ interesting: T) -> T where T: Interesting {
+        addInterest(interesting.interest)
+        return interesting
+    }
+}
+
 extension Operation: Interested { }
