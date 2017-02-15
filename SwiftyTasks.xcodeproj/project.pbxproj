@@ -20,9 +20,10 @@
 		5752EA941E0E764000B20D83 /* OperationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA931E0E764000B20D83 /* OperationExtensions.swift */; };
 		5752EA961E0E767400B20D83 /* Pending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5752EA951E0E767400B20D83 /* Pending.swift */; };
 		5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758B27B1D900D3F0060318A /* ReverseApplication.swift */; };
-		578681781E4B29890031768A /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578681771E4B29890031768A /* Interest.swift */; };
-		5786817A1E4B29A60031768A /* Interesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578681791E4B29A60031768A /* Interesting.swift */; };
-		5786817C1E4B29AE0031768A /* Inetrested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786817B1E4B29AE0031768A /* Inetrested.swift */; };
+		5783D2301E54726800BD2E4B /* Synchronizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783D22F1E54726800BD2E4B /* Synchronizable.swift */; };
+		5783D2331E5472EA00BD2E4B /* ProgressLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783D2321E5472EA00BD2E4B /* ProgressLink.swift */; };
+		5783D2351E5472FB00BD2E4B /* ProgressDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783D2341E5472FB00BD2E4B /* ProgressDependencies.swift */; };
+		5783D2371E54730300BD2E4B /* ProgressExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5783D2361E54730300BD2E4B /* ProgressExtensions.swift */; };
 		5786817E1E4B5FCE0031768A /* FactoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786817D1E4B5FCE0031768A /* FactoryTask.swift */; };
 		57896FC01DEB842A0016845E /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57896FBC1DEB842A0016845E /* Channel.swift */; };
 		57896FC11DEB842A0016845E /* OutputChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57896FBD1DEB842A0016845E /* OutputChannel.swift */; };
@@ -62,15 +63,17 @@
 		570C137B1D95BAB3001E5C62 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		570C137D1D95C0EB001E5C62 /* BlockTaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTaskTests.swift; sourceTree = "<group>"; };
 		570C137F1D95C1F4001E5C62 /* Chaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chaining.swift; sourceTree = "<group>"; };
+		574DF53F1E54B3B10004878A /* run-tests.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "run-tests.sh"; sourceTree = "<group>"; };
 		5752EA8D1E0E6C8C00B20D83 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		5752EA8F1E0E6F4300B20D83 /* PartialApplicationTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialApplicationTasks.swift; sourceTree = "<group>"; };
 		5752EA901E0E6F4300B20D83 /* PartialApplicationFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialApplicationFunctions.swift; sourceTree = "<group>"; };
 		5752EA931E0E764000B20D83 /* OperationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationExtensions.swift; sourceTree = "<group>"; };
 		5752EA951E0E767400B20D83 /* Pending.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pending.swift; sourceTree = "<group>"; };
 		5758B27B1D900D3F0060318A /* ReverseApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseApplication.swift; sourceTree = "<group>"; };
-		578681771E4B29890031768A /* Interest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
-		578681791E4B29A60031768A /* Interesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interesting.swift; sourceTree = "<group>"; };
-		5786817B1E4B29AE0031768A /* Inetrested.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inetrested.swift; sourceTree = "<group>"; };
+		5783D22F1E54726800BD2E4B /* Synchronizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Synchronizable.swift; sourceTree = "<group>"; };
+		5783D2321E5472EA00BD2E4B /* ProgressLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressLink.swift; sourceTree = "<group>"; };
+		5783D2341E5472FB00BD2E4B /* ProgressDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressDependencies.swift; sourceTree = "<group>"; };
+		5783D2361E54730300BD2E4B /* ProgressExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressExtensions.swift; sourceTree = "<group>"; };
 		5786817D1E4B5FCE0031768A /* FactoryTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactoryTask.swift; sourceTree = "<group>"; };
 		57896FBC1DEB842A0016845E /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		57896FBD1DEB842A0016845E /* OutputChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputChannel.swift; sourceTree = "<group>"; };
@@ -127,14 +130,14 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		578681761E4B29890031768A /* Interest */ = {
+		5783D2311E5472D600BD2E4B /* Progress */ = {
 			isa = PBXGroup;
 			children = (
-				5786817B1E4B29AE0031768A /* Inetrested.swift */,
-				578681771E4B29890031768A /* Interest.swift */,
-				578681791E4B29A60031768A /* Interesting.swift */,
+				5783D2341E5472FB00BD2E4B /* ProgressDependencies.swift */,
+				5783D2361E54730300BD2E4B /* ProgressExtensions.swift */,
+				5783D2321E5472EA00BD2E4B /* ProgressLink.swift */,
 			);
-			path = Interest;
+			path = Progress;
 			sourceTree = "<group>";
 		};
 		57896FBB1DEB842A0016845E /* Channels */ = {
@@ -174,8 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				57896FBB1DEB842A0016845E /* Channels */,
-				578681761E4B29890031768A /* Interest */,
 				57CDEB911D8FED2300E78BE5 /* Operators */,
+				5783D2311E5472D600BD2E4B /* Progress */,
 				57CDEB961D8FED2300E78BE5 /* Tasks */,
 				57DD5F421DE61FB600CC8798 /* Utils */,
 				57CDEB731D8FEC0D00E78BE5 /* Info.plist */,
@@ -200,10 +203,11 @@
 			isa = PBXGroup;
 			children = (
 				57BBEA9A1D9956F80069EDE8 /* .gitignore */,
-				570C137B1D95BAB3001E5C62 /* .travis.yml */,
 				57BBEA991D9956F80069EDE8 /* .swift-version */,
+				570C137B1D95BAB3001E5C62 /* .travis.yml */,
 				57CDEB8A1D8FEC6700E78BE5 /* LICENSE */,
 				57CDEB8B1D8FEC6700E78BE5 /* README.md */,
+				574DF53F1E54B3B10004878A /* run-tests.sh */,
 				57CDEB8C1D8FEC6700E78BE5 /* SwiftyTasks.podspec */,
 			);
 			name = Meta;
@@ -243,6 +247,7 @@
 				5752EA8D1E0E6C8C00B20D83 /* ArrayExtensions.swift */,
 				57DD5F441DE61FB600CC8798 /* Lockable.swift */,
 				5752EA931E0E764000B20D83 /* OperationExtensions.swift */,
+				5783D22F1E54726800BD2E4B /* Synchronizable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -358,7 +363,8 @@
 			files = (
 				57896FC11DEB842A0016845E /* OutputChannel.swift in Sources */,
 				57896FC31DEB842A0016845E /* OutputPin.swift in Sources */,
-				5786817C1E4B29AE0031768A /* Inetrested.swift in Sources */,
+				5783D2301E54726800BD2E4B /* Synchronizable.swift in Sources */,
+				5783D2331E5472EA00BD2E4B /* ProgressLink.swift in Sources */,
 				57896FC01DEB842A0016845E /* Channel.swift in Sources */,
 				57CDEB9E1D8FED2300E78BE5 /* Enqueue.swift in Sources */,
 				5752EA8E1E0E6C8C00B20D83 /* ArrayExtensions.swift in Sources */,
@@ -366,7 +372,6 @@
 				570C13801D95C1F4001E5C62 /* Chaining.swift in Sources */,
 				5700CCF11DE08CDA00652F9C /* TaskError.swift in Sources */,
 				57CDEBA31D8FED2300E78BE5 /* AsyncBlockTask.swift in Sources */,
-				578681781E4B29890031768A /* Interest.swift in Sources */,
 				57B5FD591E0D4A860068781B /* InputChannel.swift in Sources */,
 				57DD5F471DE61FB600CC8798 /* Lockable.swift in Sources */,
 				57CDEBA61D8FED2300E78BE5 /* Task.swift in Sources */,
@@ -377,12 +382,13 @@
 				5752EA941E0E764000B20D83 /* OperationExtensions.swift in Sources */,
 				57896FC21DEB842A0016845E /* InputPin.swift in Sources */,
 				57CDEBA41D8FED2300E78BE5 /* AsyncTask.swift in Sources */,
+				5783D2351E5472FB00BD2E4B /* ProgressDependencies.swift in Sources */,
 				5786817E1E4B5FCE0031768A /* FactoryTask.swift in Sources */,
+				5783D2371E54730300BD2E4B /* ProgressExtensions.swift in Sources */,
 				5752EA911E0E6F4300B20D83 /* PartialApplicationTasks.swift in Sources */,
 				5752EA961E0E767400B20D83 /* Pending.swift in Sources */,
 				5758B27C1D900D3F0060318A /* ReverseApplication.swift in Sources */,
 				57CDEBA01D8FED2300E78BE5 /* TaskOperators.swift in Sources */,
-				5786817A1E4B29A60031768A /* Interesting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +458,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -500,7 +506,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -522,7 +528,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SwiftyTasks/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wtf.address.SwiftyTasks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -542,7 +547,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SwiftyTasks/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wtf.address.SwiftyTasks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -556,7 +560,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SwiftyTasksTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wtf.address.SwiftyTasksTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -569,7 +572,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SwiftyTasksTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wtf.address.SwiftyTasksTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

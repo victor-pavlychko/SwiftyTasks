@@ -18,7 +18,7 @@ public func ~~ <T, U> (lhs: T, rhs: U) -> T where T: AnyTask, U: AnyTask {
     for operation in lhs.backingOperations {
         for dependency in rhs.backingOperations {
             operation.addDependency(dependency)
-            operation.addInterest(dependency.interest)
+            Progress.connect(progressReporting: operation, addDependency: dependency)
         }
     }
     return lhs
@@ -35,7 +35,7 @@ public func ~~ <T, S> (lhs: T, rhs: S) -> T where T: AnyTask, S: Sequence, S.Ite
         for dependencyTask in rhs {
             for dependency in dependencyTask.backingOperations {
                 operation.addDependency(dependency)
-                operation.addInterest(dependency.interest)
+                Progress.connect(progressReporting: operation, addDependency: dependency)
             }
         }
     }

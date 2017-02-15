@@ -37,3 +37,18 @@ internal extension NSLocking {
         return try block()
     }
 }
+
+internal extension Synchronizable {
+    
+    /// <#Description#>
+    ///
+    /// - Parameter code: <#code description#>
+    /// - Returns: <#return value description#>
+    /// - Throws: <#throws value description#>
+    @inline(__always)
+    internal func sync<T>(_ code: () throws -> T) rethrows -> T {
+        return try lock.sync {
+            return try code()
+        }
+    }
+}

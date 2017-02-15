@@ -10,10 +10,13 @@ import Foundation
 
 /// Base class for writing custom Tasks. Provides result handling and
 /// removes dependencies on start to lower memory use.
-open class Task<ResultType>: Operation, TaskProtocol {
+open class Task<ResultType>: Operation, ProgressReporting, TaskProtocol {
 
     private let _result = Pending<ResultType>()
 
+    /// <#Description#>
+    public let progress = Progress.discreteProgress(totalUnitCount: -1)
+    
     /// Retrieves tast execution result or error
     ///
     /// - Throws: captured error if any
@@ -35,7 +38,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     /// - Parameter result: result value
     public final func finish(result: ResultType) {
         _result.set(result: result)
-        finish()
+        _finish()
     }
 
     /// Marks task as finished with the error
@@ -43,7 +46,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     /// - Parameter result: error value
     public final func finish(error: Error) {
         _result.set(error: error)
-        finish()
+        _finish()
     }
 
     /// Marks task as finished with result or error
@@ -53,7 +56,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     ///   - error:  optional error value
     public final func finish(result: ResultType?, error: Error?) {
         _result.set(result: result, error: error)
-        finish()
+        _finish()
     }
     
     /// Marks task as finished with optional result.
@@ -62,7 +65,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     /// - Parameter result: optional result value
     public final func finish(result: ResultType?) {
         _result.set(result: result)
-        finish()
+        _finish()
     }
     
     /// Marks task as finished with result taken from the block
@@ -70,7 +73,7 @@ open class Task<ResultType>: Operation, TaskProtocol {
     /// - Parameter result: result block
     public final func finish(_ result: () throws -> ResultType) {
         _result.set(result)
-        finish()
+        _finish()
     }
     
     /// Marks task as finished with result taken from the block
@@ -78,17 +81,40 @@ open class Task<ResultType>: Operation, TaskProtocol {
     /// - Parameter result: result block
     public final func finish(_ result: @autoclosure () throws -> ResultType) {
         _result.set(result)
-        finish()
+        _finish()
     }
 
     /// Detaches all dependencies and starts execution
     open override func start() {
         purgeDependencies()
+        progress.isCancellable = true
+        progress.cancellationHandler = { [weak self] in self?.cancel() }
+        progress.pausingHandler = { [weak self] in self?.pause() }
+        progress.resumingHandler = { [weak self] in self?.resume() }
         super.start()
+    }
+    
+    /// <#Description#>
+    open func pause() {
+    }
+    
+    /// <#Description#>
+    open func resume() {
     }
     
     /// Called by other finish(...) methods after storing task outcome.
     /// Use this as an extension point for custom finalizers.
     open func finish() {
+    }
+
+    /// <#Description#>
+    private func _finish() {
+        finish()
+        if progress.totalUnitCount > 0 {
+            progress.completedUnitCount = progress.totalUnitCount
+        } else {
+            progress.completedUnitCount = 1
+            progress.completedUnitCount = 1
+        }
     }
 }
