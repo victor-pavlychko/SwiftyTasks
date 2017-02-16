@@ -36,6 +36,23 @@ internal extension NSLocking {
         defer { unlock() }
         return try block()
     }
+    
+    @inline(__always)
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - variable: <#variable description#>
+    ///   - value: <#value description#>
+    ///   - block: <#block description#>
+    /// - Throws: <#throws value description#>
+    internal func syncAndSet<T>(variable: inout T, value: T, execute block: () throws -> Void) rethrows where T: Equatable {
+        try sync {
+            if variable != value {
+                variable = value
+                try block()
+            }
+        }
+    }
 }
 
 internal extension Synchronizable {

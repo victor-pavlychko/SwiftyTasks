@@ -18,9 +18,9 @@ public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
         _factory = { try AnyTaskBox(factory()) }
     }
 
-    public override func cancel() {
+    public override func handleCancelled() {
+        super.handleCancelled()
         _lock.sync {
-            super.cancel()
             _task?.cancel()
         }
     }
@@ -28,6 +28,9 @@ public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
     public override func main() {
         do {
             let task = try makeTask()
+            for operation in task.backingOperations {
+                progress.addDependency(operation.operationProgress)
+            }
             task.start {
                 self.finish(task.getResult)
             }

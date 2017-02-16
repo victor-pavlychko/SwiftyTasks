@@ -13,9 +13,22 @@ import Foundation
 open class Task<ResultType>: Operation, ProgressReporting, TaskProtocol {
 
     private let _result = Pending<ResultType>()
+    
+    private let _lock = NSLock()
+    private var _isPaused = false
+    private var _isCancelled = false
 
     /// <#Description#>
     public let progress = Progress.discreteProgress(totalUnitCount: -1)
+
+    /// <#Description#>
+    public override init() {
+        super.init()
+        progress.isCancellable = true
+        progress.cancellationHandler = { [weak self] in self?.cancel() }
+        progress.pausingHandler = { [weak self] in self?.pause() }
+        progress.resumingHandler = { [weak self] in self?.resume() }
+    }
     
     /// Retrieves tast execution result or error
     ///
@@ -87,19 +100,33 @@ open class Task<ResultType>: Operation, ProgressReporting, TaskProtocol {
     /// Detaches all dependencies and starts execution
     open override func start() {
         purgeDependencies()
-        progress.isCancellable = true
-        progress.cancellationHandler = { [weak self] in self?.cancel() }
-        progress.pausingHandler = { [weak self] in self?.pause() }
-        progress.resumingHandler = { [weak self] in self?.resume() }
         super.start()
     }
     
-    /// <#Description#>
-    open func pause() {
+    open func handleCancelled() { }
+
+    public final override func cancel() {
+        super.cancel()
+        _lock.syncAndSet(variable: &_isCancelled, value: true, execute: handleCancelled)
     }
     
     /// <#Description#>
-    open func resume() {
+    public final var isPaused: Bool {
+        return _isPaused
+    }
+    
+    open func handlePaused() { }
+
+    /// <#Description#>
+    public final func pause() {
+        _lock.syncAndSet(variable: &_isPaused, value: true, execute: handlePaused)
+    }
+    
+    open func handleResumed() { }
+    
+    /// <#Description#>
+    public final func resume() {
+        _lock.syncAndSet(variable: &_isPaused, value: false, execute: handleResumed)
     }
     
     /// Called by other finish(...) methods after storing task outcome.
@@ -110,11 +137,6 @@ open class Task<ResultType>: Operation, ProgressReporting, TaskProtocol {
     /// <#Description#>
     private func _finish() {
         finish()
-        if progress.totalUnitCount > 0 {
-            progress.completedUnitCount = progress.totalUnitCount
-        } else {
-            progress.completedUnitCount = 1
-            progress.completedUnitCount = 1
-        }
+        progress.complete()
     }
 }

@@ -44,21 +44,34 @@ public extension Progress {
     
     /// <#Description#>
     public func becomePrincipal() {
-        sync {
-            _isPrincipal = true
-        }
+        _isPrincipal = true
     }
 
+    /// <#Description#>
     public var isPrincipal: Bool {
         return _isPrincipal
     }
 }
 
-public extension Progress {
+internal extension Progress {
     
-    public static func connect(progressReporting lhs: Any, addDependency rhs: Any) {
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - lhs: <#lhs description#>
+    ///   - rhs: <#rhs description#>
+    internal static func connect(progressReporting lhs: Any, addDependency rhs: Any) {
         if let lhs = lhs as? ProgressReporting, let rhs = rhs as? ProgressReporting {
             lhs.progress.addDependency(rhs.progress)
+        }
+    }
+    
+    internal func complete() {
+        if totalUnitCount > 0 {
+            completedUnitCount = totalUnitCount
+        } else {
+            completedUnitCount = 1
+            completedUnitCount = 1
         }
     }
 }
