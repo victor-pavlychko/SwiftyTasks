@@ -30,10 +30,15 @@ internal extension Operation {
             if let operationProgress = objc_getAssociatedObject(self, &AssociatedKeys.Operation.operationProgress) as? Progress {
                 return operationProgress
             }
+            
             let operationProgress = Progress.discreteProgress(totalUnitCount: -1)
             operationProgress.isCancellable = true
             operationProgress.cancellationHandler = { [weak self] in self?.cancel() }
-            OperationQueue.serviceQueue += BlockTask { operationProgress.complete() } ~~ self
+            
+            let operationFinalizer = BlockOperation { operationProgress.complete() }
+            operationFinalizer.addDependency(self)
+            OperationQueue.serviceQueue += operationFinalizer
+
             objc_setAssociatedObject(self, &AssociatedKeys.Operation.operationProgress, operationProgress, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return operationProgress
         }
