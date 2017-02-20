@@ -8,16 +8,18 @@
 
 import Foundation
 
+/// <#Description#>
 public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
     
     private let _lock = NSLock()
-    private var _factory: () throws -> AnyTaskBox<ResultType>
-    private var _task: AnyTaskBox<ResultType>?
+    private var _factory: () throws -> AnyTask<ResultType>
+    private var _task: AnyTask<ResultType>?
     
     public init<T>(_ factory: @escaping () throws -> T) where T: TaskProtocol, T.ResultType == ResultType {
-        _factory = { try AnyTaskBox(factory()) }
+        _factory = { try AnyTask(factory()) }
     }
 
+    /// <#Description#>
     public override func handleCancelled() {
         super.handleCancelled()
         _lock.sync {
@@ -25,6 +27,7 @@ public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
         }
     }
     
+    /// <#Description#>
     public override func main() {
         do {
             let task = try makeTask()
@@ -39,7 +42,11 @@ public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
         }
     }
 
-    private func makeTask() throws -> AnyTaskBox<ResultType> {
+    /// <#Description#>
+    ///
+    /// - Returns: <#return value description#>
+    /// - Throws: <#throws value description#>
+    private func makeTask() throws -> AnyTask<ResultType> {
         return try _lock.sync {
             guard !isCancelled else {
                 throw TaskError.cancelled
@@ -48,54 +55,5 @@ public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
             _task = task
             return task
         }
-    }
-}
-
-public class AnyTaskBox<T>: TaskProtocol {
-    
-    private let _taskBox: _AnyTaskBox<T>
-    
-    public typealias ResultType = T
-    
-    public init<T>(_ task: T) where T: TaskProtocol, T.ResultType == ResultType {
-        _taskBox = _AnyTaskBoxImpl(task)
-    }
-    
-    public var backingOperations: [Operation] {
-        return _taskBox.backingOperations
-    }
-    
-    public func getResult() throws -> ResultType {
-        return try _taskBox.getResult()
-    }
-}
-
-fileprivate class _AnyTaskBox<T>: TaskProtocol {
-    
-    typealias ResultType = T
-
-    var backingOperations: [Operation] {
-        fatalError()
-    }
-
-    func getResult() throws -> ResultType {
-        fatalError()
-    }
-}
-
-fileprivate class _AnyTaskBoxImpl<T>: _AnyTaskBox<T.ResultType> where T: TaskProtocol {
-
-    private let _task: T
-    
-    init(_ task: T) {
-        _task = task
-    }
-    
-    override var backingOperations: [Operation] {
-        return _task.backingOperations
-    }
-    
-    override func getResult() throws -> ResultType {
-        return try _task.getResult()
     }
 }

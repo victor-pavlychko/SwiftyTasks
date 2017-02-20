@@ -14,7 +14,7 @@ import Foundation
 ///   - lhs: task
 ///   - rhs: dependency task
 /// - Returns: `lhs` task
-public func ~~ <T, U> (lhs: T, rhs: U) -> T where T: AnyTask, U: AnyTask {
+public func ~~ <T, U> (lhs: T, rhs: U) -> T where T: AnyTaskProtocol, U: AnyTaskProtocol {
     for operation in lhs.backingOperations {
         for dependency in rhs.backingOperations {
             operation.addDependency(dependency)
@@ -30,7 +30,7 @@ public func ~~ <T, U> (lhs: T, rhs: U) -> T where T: AnyTask, U: AnyTask {
 ///   - lhs: task
 ///   - rhs: dependency tasks
 /// - Returns: `lhs` task
-public func ~~ <T, S> (lhs: T, rhs: S) -> T where T: AnyTask, S: Sequence, S.Iterator.Element == AnyTask {
+public func ~~ <T, S> (lhs: T, rhs: S) -> T where T: AnyTaskProtocol, S: Sequence, S.Iterator.Element == AnyTaskProtocol {
     for operation in lhs.backingOperations {
         for dependencyTask in rhs {
             for dependency in dependencyTask.backingOperations {

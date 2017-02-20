@@ -23,7 +23,7 @@ public struct AdapterTask<ResultType>: TaskProtocol {
     ///   - task:    backing operation
     ///   - adapter: result block
     /// - Returns: newly created adapter
-    public init(_ task: AnyTask, _ adapter: @escaping () throws -> ResultType) {
+    public init(_ task: AnyTaskProtocol, _ adapter: @escaping () throws -> ResultType) {
         _adapter = adapter
         backingOperations = task.backingOperations
     }
@@ -34,7 +34,7 @@ public struct AdapterTask<ResultType>: TaskProtocol {
     ///   - tasks:   list of backing operations
     ///   - adapter: result block
     /// - Returns: newly created adapter
-    public init(_ tasks: [AnyTask], _ adapter: @escaping () throws -> ResultType) {
+    public init(_ tasks: [AnyTaskProtocol], _ adapter: @escaping () throws -> ResultType) {
         _adapter = adapter
         backingOperations = tasks.flatMap { $0.backingOperations }
     }

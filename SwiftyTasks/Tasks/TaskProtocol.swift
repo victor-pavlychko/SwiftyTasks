@@ -8,15 +8,8 @@
 
 import Foundation
 
-/// Abstract task
-public protocol AnyTask {
-
-    /// List of backing operations
-    var backingOperations: [Operation] { get }
-}
-
 /// Abstract task with result
-public protocol TaskProtocol: AnyTask {
+public protocol TaskProtocol: AnyTaskProtocol {
 
     associatedtype ResultType
 
@@ -25,37 +18,6 @@ public protocol TaskProtocol: AnyTask {
     /// - Throws: captured error if any
     /// - Returns: execution result
     func getResult() throws -> ResultType
-}
-
-extension Operation: AnyTask {
-    
-    /// List of backing operations which is equal to `[self]` in case of Operation
-    public var backingOperations: [Operation] {
-        return [self]
-    }
-}
-
-public extension AnyTask {
-
-    /// Starts execution of all backing operation and fires completion block when ready.
-    /// Async operations will run concurrently in background, sync ones will execute one by one
-    /// in current thread.
-    ///
-    /// - Parameter completionBlock: Completion block to be fired when everyhting is done
-    public func start(_ completionBlock: @escaping () -> Void) {
-        guard !backingOperations.isEmpty else {
-            completionBlock()
-            return
-        }
-        OperationQueue.serviceQueue += self
-        OperationQueue.serviceQueue += BlockTask(completionBlock) ~~ self
-    }
-    
-    public func cancel() {
-        for operation in backingOperations {
-            operation.cancel()
-        }
-    }
 }
 
 public extension TaskProtocol {

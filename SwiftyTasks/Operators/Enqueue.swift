@@ -15,7 +15,7 @@ import Foundation
 ///   - rhs: task
 /// - Returns: `rhs` task
 @discardableResult
-public func += <T> (lhs: OperationQueue, rhs: T) -> T where T: AnyTask {
+public func += <T> (lhs: OperationQueue, rhs: T) -> T where T: AnyTaskProtocol {
     lhs.addOperations(rhs.backingOperations, waitUntilFinished: false)
     return rhs
 }

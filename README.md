@@ -19,8 +19,8 @@ to support `TaskProtocol` and participate in complex workflows.
 ### Tasks
 
 SwiftyTasks defines following task-related protocols:
-* `AnyTask`: provides list of backing tasks, is adopted by `Operation` class
-* `TaskProtocol`: extenda `AnyTask` adding access to execution result
+* `AnyTaskProtocol`: provides list of backing tasks, is adopted by `Operation` class
+* `TaskProtocol`: extenda `AnyTaskProtocol` adding access to execution result
 
 Library also defines following task-related classes:
 * `Task<ResultType>`: base class, conforms to `TaskProtocol`, provides result handling

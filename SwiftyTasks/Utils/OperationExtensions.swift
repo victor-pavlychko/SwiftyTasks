@@ -32,12 +32,17 @@ internal extension Operation {
 
 internal extension OperationQueue {
     
-    private static func makeQueue(name: String, concurrencyLevel: Int) -> OperationQueue {
-        let queue = OperationQueue()
-        queue.name = name
-        queue.maxConcurrentOperationCount = concurrencyLevel
-        return queue
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - name: <#name description#>
+    ///   - concurrencyLevel: <#concurrencyLevel description#>
+    internal convenience init(name: String, concurrencyLevel: Int) {
+        self.init()
+        self.name = name
+        self.maxConcurrentOperationCount = concurrencyLevel
     }
     
-    internal static let serviceQueue = makeQueue(name: "SwiftTasks.OperationQueue.serviceQueue", concurrencyLevel: Int.max)
+    /// <#Description#>
+    internal static let serviceQueue = OperationQueue(name: "SwiftTasks.OperationQueue.serviceQueue", concurrencyLevel: Int.max)
 }

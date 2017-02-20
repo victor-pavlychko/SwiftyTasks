@@ -9,12 +9,12 @@
 import Foundation
 
 public struct TaskPartialApplication1<R, T1> where R: TaskProtocol {
-    fileprivate let deps: [AnyTask]
+    fileprivate let deps: [AnyTaskProtocol]
     fileprivate let fn: (T1) throws -> R
 }
 
 public struct TaskPartialApplication2<R, T1, T2> where R: TaskProtocol {
-    fileprivate let deps: [AnyTask]
+    fileprivate let deps: [AnyTaskProtocol]
     fileprivate let fn: (T1, T2) throws -> R
 }
 
