@@ -18,7 +18,7 @@ public func ~~ <T, U> (lhs: T, rhs: U) -> T where T: AnyTaskProtocol, U: AnyTask
     for operation in lhs.backingOperations {
         for dependency in rhs.backingOperations {
             operation.addDependency(dependency)
-            operation.operationProgress.addDependency(dependency.operationProgress)
+            operation.compoundProgress.addDependency(dependency.compoundProgress, unitCount: dependency.compoundProgress.totalUnitCount)
         }
     }
     return lhs
@@ -35,7 +35,7 @@ public func ~~ <T, S> (lhs: T, rhs: S) -> T where T: AnyTaskProtocol, S: Sequenc
         for dependencyTask in rhs {
             for dependency in dependencyTask.backingOperations {
                 operation.addDependency(dependency)
-                operation.operationProgress.addDependency(dependency.operationProgress)
+                operation.compoundProgress.addDependency(dependency.compoundProgress, unitCount: dependency.compoundProgress.totalUnitCount)
             }
         }
     }

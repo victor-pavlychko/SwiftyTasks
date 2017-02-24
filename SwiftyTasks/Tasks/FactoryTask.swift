@@ -28,7 +28,7 @@ public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
             let task = try _factory()
             _task = task
             for operation in task.backingOperations {
-                progress.addDependency(operation.operationProgress)
+                progress.addDependency(operation.compoundProgress)
             }
             task.start {
                 self.finish(task.getResult)
