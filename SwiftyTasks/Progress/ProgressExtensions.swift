@@ -36,9 +36,9 @@ public extension Progress {
     /// <#Description#>
     ///
     /// - Parameter dependency: <#dependency description#>
-    public func addDependency(_ dependency: Progress) {
+    public func addDependency(_ dependency: Progress, unitCount: Int64 = 1) {
         sync {
-            _dependencies.add(ProgressLink(parent: self, child: dependency))
+            _dependencies.add(ProgressLink(parent: self, child: dependency, unitCount: unitCount))
         }
     }
     
@@ -70,7 +70,7 @@ internal extension Progress {
         if totalUnitCount > 0 {
             completedUnitCount = totalUnitCount
         } else {
-            completedUnitCount = 1
+            totalUnitCount = 1
             completedUnitCount = 1
         }
     }

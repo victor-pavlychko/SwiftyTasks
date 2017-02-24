@@ -12,7 +12,7 @@ import Foundation
 internal final class ProgressLink: NSObject {
     
     private let _child: Progress
-    private let _proxy = Progress.discreteProgress(totalUnitCount: 0)
+    private let _proxy: Progress
     private let _lock = NSLock()
     
     /// <#Description#>
@@ -20,26 +20,29 @@ internal final class ProgressLink: NSObject {
     /// - Parameters:
     ///   - parent: <#parent description#>
     ///   - child: <#child description#>
-    ///   - parentUnitCount: <#parentUnitCount description#>
-    internal init(parent: Progress, child: Progress, parentUnitCount: Int64 = 1) {
+    ///   - unitCount: <#parentUnitCount description#>
+    internal init(parent: Progress, child: Progress, unitCount: Int64 = 100) {
         _child = child
+        _proxy = Progress.discreteProgress(totalUnitCount: 0)
         super.init()
 
-        _child.addOwner(paused: false)
-
-        _proxy.cancellationHandler = { [weak self] in self?._child.cancelByOwner() }
-        _proxy.pausingHandler = { [weak self] in self?._child.pauseByOwner() }
-        _proxy.resumingHandler = { [weak self] in self?._child.resumeByOwner() }
-
         _lock.sync {
-            _child.addObserver(self, forKeyPath: #keyPath(Progress.totalUnitCount), options: [], context: nil)
-            _child.addObserver(self, forKeyPath: #keyPath(Progress.completedUnitCount), options: [], context: nil)
+            _child.addOwner(paused: false)
+
+            _proxy.isCancellable = _child.isCancellable
+            _proxy.isPausable = _child.isPausable
             _proxy.totalUnitCount = _child.totalUnitCount
             _proxy.completedUnitCount = _child.completedUnitCount
+
+            _proxy.cancellationHandler = { [weak self] in self?._child.cancelByOwner() }
+            _proxy.pausingHandler = { [weak self] in self?._child.pauseByOwner() }
+            _proxy.resumingHandler = { [weak self] in self?._child.resumeByOwner() }
+            _child.addObserver(self, forKeyPath: #keyPath(Progress.totalUnitCount), options: [], context: nil)
+            _child.addObserver(self, forKeyPath: #keyPath(Progress.completedUnitCount), options: [], context: nil)
         }
 
-        parent.totalUnitCount += parentUnitCount
-        parent.addChild(_proxy, withPendingUnitCount: parentUnitCount)
+        parent.totalUnitCount += unitCount
+        parent.addChild(_proxy, withPendingUnitCount: unitCount)
     }
     
     deinit {

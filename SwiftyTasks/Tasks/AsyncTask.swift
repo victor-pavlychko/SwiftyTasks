@@ -59,11 +59,15 @@ open class AsyncTask<ResultType>: Task<ResultType> {
     open override func start() {
         _state = .executing
         purgeDependencies()
+        guard !isCancelled else {
+            finish(error: TaskError.cancelled)
+            return
+        }
         main()
     }
 
-    open override func finish() {
-        super.finish()
+    internal override func _finish() {
+        super._finish()
         _state = .finished
     }
 }

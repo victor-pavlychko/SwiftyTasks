@@ -19,7 +19,7 @@ open class Task<ResultType>: Operation, ProgressReporting, TaskProtocol {
     private var _isCancelled = false
 
     /// <#Description#>
-    public let progress = Progress.discreteProgress(totalUnitCount: -1)
+    public let progress = Progress.discreteProgress(totalUnitCount: 0)
 
     /// <#Description#>
     public override init() {
@@ -135,7 +135,7 @@ open class Task<ResultType>: Operation, ProgressReporting, TaskProtocol {
     }
 
     /// <#Description#>
-    private func _finish() {
+    internal func _finish() {
         finish()
         progress.complete()
     }

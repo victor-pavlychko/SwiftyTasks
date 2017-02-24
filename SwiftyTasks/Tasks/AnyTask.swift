@@ -9,7 +9,7 @@
 import Foundation
 
 /// <#Description#>
-public class AnyTask<T>: TaskProtocol {
+public class AnyTask<T>: TaskProtocol, CustomStringConvertible {
     
     private let _taskBox: _AnyTaskBox<T>
     
@@ -32,9 +32,15 @@ public class AnyTask<T>: TaskProtocol {
     public func getResult() throws -> ResultType {
         return try _taskBox.getResult()
     }
+    
+    /// <#Description#>
+    public var description: String {
+        let address = Unmanaged.passUnretained(self).toOpaque()
+        return "<\(String(describing: type(of: self))): \(address), \(_taskBox)>"
+    }
 }
 
-fileprivate class _AnyTaskBox<T>: TaskProtocol {
+fileprivate class _AnyTaskBox<T>: TaskProtocol, CustomStringConvertible {
     
     typealias ResultType = T
     
@@ -43,6 +49,10 @@ fileprivate class _AnyTaskBox<T>: TaskProtocol {
     }
     
     func getResult() throws -> ResultType {
+        fatalError()
+    }
+    
+    var description: String {
         fatalError()
     }
 }
@@ -61,5 +71,9 @@ fileprivate class _AnyTaskBoxImpl<T>: _AnyTaskBox<T.ResultType> where T: TaskPro
     
     override func getResult() throws -> ResultType {
         return try _task.getResult()
+    }
+    
+    override var description: String {
+        return String(describing: _task)
     }
 }

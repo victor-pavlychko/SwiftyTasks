@@ -27,14 +27,12 @@ public extension AnyTaskProtocol {
             completionBlock()
             return
         }
+
         OperationQueue.serviceQueue += self
-        OperationQueue.serviceQueue += BlockTask(completionBlock) ~~ self
-    }
-    
-    public func cancel() {
-        for operation in backingOperations {
-            operation.cancel()
-        }
+
+        let operationFinalizer = BlockOperation { completionBlock() }
+        operationFinalizer.addDependencies(backingOperations)
+        OperationQueue.serviceQueue += operationFinalizer
     }
 }
 

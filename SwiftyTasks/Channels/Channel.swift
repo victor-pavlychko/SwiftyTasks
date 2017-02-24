@@ -9,7 +9,7 @@
 import Foundation
 
 /// <#Description#>
-public final class Channel<Element>: OutputChannel, Sequence, IteratorProtocol {
+public final class Channel<Element>: InputChannel, OutputChannel, Sequence {
 
     private var _active = true
     private var _buffer: [Element] = []
@@ -34,7 +34,6 @@ public final class Channel<Element>: OutputChannel, Sequence, IteratorProtocol {
     ///
     /// - Parameter element: <#element description#>
     /// - Returns: <#return value description#>
-    @discardableResult
     public func send(_ element: Element) -> Bool {
         return _condition.sync {
             while true {
@@ -55,9 +54,6 @@ public final class Channel<Element>: OutputChannel, Sequence, IteratorProtocol {
     /// <#Description#>
     public func close() {
         _condition.sync {
-            guard _active else {
-                fatalError()
-            }
             _active = false
             _condition.broadcast()
         }

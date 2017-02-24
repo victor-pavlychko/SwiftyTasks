@@ -56,16 +56,36 @@ public final class ProgressObserver: NSObject {
     }
     
     /// <#Description#>
-    public weak var listener: ProgressObserverListener?
+    public weak var listener: ProgressObserverListener? {
+        didSet {
+            if let listener = listener {
+                listener.progress(progress, didChangeState: state)
+                listener.progress(progress, didUpdateFractionCompleted: progress.fractionCompleted)
+                listener.progress(progress, didUpdateUnitCount: progress.totalUnitCount, completedCount: progress.completedUnitCount)
+            }
+        }
+    }
 
     /// <#Description#>
-    public var fractionCompletedHandler: ((_ fractionCompleted: Double) -> Void)?
+    public var fractionCompletedHandler: ((_ fractionCompleted: Double) -> Void)? {
+        didSet {
+            fractionCompletedHandler?(progress.fractionCompleted)
+        }
+    }
     
     /// <#Description#>
-    public var unitCountHandler: ((_ totalUnitCount: Int64, _ compeletedUnitCount: Int64) -> Void)?
+    public var unitCountHandler: ((_ totalUnitCount: Int64, _ compeletedUnitCount: Int64) -> Void)? {
+        didSet {
+            unitCountHandler?(progress.totalUnitCount, progress.completedUnitCount)
+        }
+    }
     
     /// <#Description#>
-    public var stateHandler: ((_ state: State) -> Void)?
+    public var stateHandler: ((_ state: State) -> Void)? {
+        didSet {
+            stateHandler?(state)
+        }
+    }
 
     /// <#Description#>
     public let progress: Progress
@@ -112,14 +132,24 @@ public final class ProgressObserver: NSObject {
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         switch keyPath {
         case .some(#keyPath(Progress.fractionCompleted)):
-            listener?.progress(progress, didUpdateFractionCompleted: progress.fractionCompleted)
-            fractionCompletedHandler?(progress.fractionCompleted)
+            let fractionCompleted = progress.fractionCompleted
+            DispatchQueue.main.async {
+                self.listener?.progress(self.progress, didUpdateFractionCompleted: fractionCompleted)
+                self.fractionCompletedHandler?(fractionCompleted)
+            }
         case .some(#keyPath(Progress.totalUnitCount)), .some(#keyPath(Progress.completedUnitCount)):
-            listener?.progress(progress, didUpdateUnitCount: progress.totalUnitCount, completedCount: progress.completedUnitCount)
-            unitCountHandler?(progress.totalUnitCount, progress.completedUnitCount)
+            let totalUnitCount = progress.totalUnitCount
+            let completedUnitCount = progress.completedUnitCount
+            DispatchQueue.main.async {
+                self.listener?.progress(self.progress, didUpdateUnitCount: totalUnitCount, completedCount: completedUnitCount)
+                self.unitCountHandler?(totalUnitCount, completedUnitCount)
+            }
         case .some(#keyPath(Progress.isPaused)), .some(#keyPath(Progress.isCancelled)):
-            listener?.progress(progress, didChangeState: state)
-            stateHandler?(state)
+            let state = self.state
+            DispatchQueue.main.async {
+                self.listener?.progress(self.progress, didChangeState: state)
+                self.stateHandler?(state)
+            }
         default:
             break
         }

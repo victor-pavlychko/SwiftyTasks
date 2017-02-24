@@ -9,7 +9,7 @@
 import Foundation
 
 /// <#Description#>
-public final class ChannelAdapter<Base, Element>: Sequence, IteratorProtocol where Base: IteratorProtocol {
+public final class ChannelAdapter<Base, Element>: InputChannel, Sequence where Base: InputChannel {
 
     private var _base: Base
     private let _transform: (Base.Element) -> Element
@@ -34,9 +34,14 @@ public final class ChannelAdapter<Base, Element>: Sequence, IteratorProtocol whe
         }
         return _transform(element)
     }
+    
+    /// <#Description#>
+    public func close() {
+        _base.close()
+    }
 }
 
-public extension IteratorProtocol {
+public extension InputChannel {
     
     /// <#Description#>
     ///

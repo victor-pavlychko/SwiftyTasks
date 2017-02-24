@@ -13,24 +13,20 @@ public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
     
     private let _lock = NSLock()
     private var _factory: () throws -> AnyTask<ResultType>
-    private var _task: AnyTask<ResultType>?
+
+    private let _taskType: Any.Type
+    private weak var _task: AnyTask<ResultType>?
     
     public init<T>(_ factory: @escaping () throws -> T) where T: TaskProtocol, T.ResultType == ResultType {
+        _taskType = T.self
         _factory = { try AnyTask(factory()) }
-    }
-
-    /// <#Description#>
-    public override func handleCancelled() {
-        super.handleCancelled()
-        _lock.sync {
-            _task?.cancel()
-        }
     }
     
     /// <#Description#>
     public override func main() {
         do {
-            let task = try makeTask()
+            let task = try _factory()
+            _task = task
             for operation in task.backingOperations {
                 progress.addDependency(operation.operationProgress)
             }
@@ -43,17 +39,12 @@ public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
     }
 
     /// <#Description#>
-    ///
-    /// - Returns: <#return value description#>
-    /// - Throws: <#throws value description#>
-    private func makeTask() throws -> AnyTask<ResultType> {
-        return try _lock.sync {
-            guard !isCancelled else {
-                throw TaskError.cancelled
-            }
-            let task = try _factory()
-            _task = task
-            return task
+    public override var description: String {
+        let address = Unmanaged.passUnretained(self).toOpaque()
+        if let task = _task {
+            return "<\(String(describing: type(of: self))): \(address), \(task)>"
+        } else {
+            return "<\(String(describing: type(of: self))): \(address), \(String(describing: _taskType))>"
         }
     }
 }

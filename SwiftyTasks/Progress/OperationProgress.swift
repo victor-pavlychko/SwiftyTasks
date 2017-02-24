@@ -31,7 +31,7 @@ internal extension Operation {
                 return operationProgress
             }
             
-            let operationProgress = Progress.discreteProgress(totalUnitCount: -1)
+            let operationProgress = Progress.discreteProgress(totalUnitCount: 0)
             operationProgress.isCancellable = true
             operationProgress.cancellationHandler = { [weak self] in self?.cancel() }
             
