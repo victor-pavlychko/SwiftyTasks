@@ -33,7 +33,6 @@ public extension ProgressWeight {
 public protocol WeightenedProgressReporting: ProgressReporting {
     
     static var progressWeight: ProgressWeight { get }
-    var progressWeight: ProgressWeight { get }
 }
 
 public extension WeightenedProgressReporting {

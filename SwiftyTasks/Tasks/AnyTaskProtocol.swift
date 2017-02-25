@@ -9,7 +9,7 @@
 import Foundation
 
 /// Abstract task
-public protocol AnyTaskProtocol {
+public protocol AnyTaskProtocol: class {
     
     /// List of backing operations
     var backingOperations: [Operation] { get }

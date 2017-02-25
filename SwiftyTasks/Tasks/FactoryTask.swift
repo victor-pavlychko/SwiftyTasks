@@ -8,21 +8,23 @@
 
 import Foundation
 
-/// <#Description#>
-public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
+public final class FactoryTask<TaskType>: AsyncTask<TaskType.ResultType>, WeightenedProgressReporting where TaskType: TaskProtocol {
 
     private let _lock = NSLock()
-    private var _factory: () throws -> AnyTask<ResultType>
-
-    private let _taskType: Any.Type
-    private weak var _task: AnyTask<ResultType>?
+    private var _factory: () throws -> TaskType
+    private weak var _task: TaskType?
     
-    public init<T>(_ factory: @escaping () throws -> T) where T: TaskProtocol, T.ResultType == ResultType {
-        _taskType = T.self
-        _factory = { try AnyTask(factory()) }
+    public static var progressWeight: ProgressWeight {
+        if let weightenedProgressReporting = TaskType.self as? WeightenedProgressReporting.Type {
+            return weightenedProgressReporting.progressWeight
+        }
+        return .default
     }
     
-    /// <#Description#>
+    public init(_ factory: @escaping () throws -> TaskType) {
+        _factory = factory
+    }
+    
     public override func main() {
         do {
             let task = try _factory()
@@ -38,13 +40,12 @@ public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
         }
     }
 
-    /// <#Description#>
     public override var description: String {
         let address = Unmanaged.passUnretained(self).toOpaque()
         if let task = _task {
             return "<\(String(describing: type(of: self))): \(address), \(task)>"
         } else {
-            return "<\(String(describing: type(of: self))): \(address), \(String(describing: _taskType))>"
+            return "<\(String(describing: type(of: self))): \(address), \(String(describing: TaskType.self))>"
         }
     }
 }

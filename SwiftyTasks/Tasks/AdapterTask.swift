@@ -11,7 +11,7 @@ import Foundation
 /// General-purpose task adapter.
 /// This object will start/wait for all backing operations and
 /// use provided block to copmute result when requested.
-public struct AdapterTask<ResultType>: TaskProtocol {
+public class AdapterTask<ResultType>: TaskProtocol {
     
     private let _adapter: () throws -> ResultType
 
