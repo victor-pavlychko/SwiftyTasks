@@ -32,12 +32,12 @@ public extension CompoundProgressReporting where Self: AnyObject {
                 return compoundProgress
             }
 
-            let compoundProgress = Progress.discreteProgress(totalUnitCount: 0)
+            let compoundProgress = Progress(discreteUnitCount: 0, description: "Compound progress for \(self)")
             compoundProgress.isCancellable = true
             compoundProgress.isPausable = true
 
             if let weightenedProgressReporting = self as? WeightenedProgressReporting {
-                compoundProgress.addDependency(weightenedProgressReporting.progress, unitCount: weightenedProgressReporting.progressWight.rawValue)
+                compoundProgress.addDependency(weightenedProgressReporting.progress, unitCount: weightenedProgressReporting.progressWeight.rawValue)
             } else if let progressReporting = self as? ProgressReporting {
                 compoundProgress.addDependency(progressReporting.progress, unitCount: ProgressWeight.default.rawValue)
             }

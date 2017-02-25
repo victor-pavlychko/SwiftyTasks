@@ -15,6 +15,11 @@ fileprivate struct AssociatedKeys {
     }
 }
 
+public extension ProgressUserInfoKey {
+
+    public static let descriptionKey = ProgressUserInfoKey(rawValue: "SwiftyTasks.ProgressUserInfoKey.descriptionKey")
+}
+
 public extension Progress {
     
     /// <#Description#>
@@ -36,9 +41,9 @@ public extension Progress {
     /// <#Description#>
     ///
     /// - Parameter dependency: <#dependency description#>
-    public func addDependency(_ dependency: Progress, unitCount: Int64 = 1) {
+    public func addDependency(_ dependency: Progress, unitCount: Int64? = nil) {
         sync {
-            _dependencies.add(ProgressLink(parent: self, child: dependency, unitCount: unitCount))
+            _dependencies.add(ProgressLink(parent: self, child: dependency, unitCount: unitCount ?? dependency.totalUnitCount))
         }
     }
     
@@ -51,20 +56,31 @@ public extension Progress {
     public var isPrincipal: Bool {
         return _isPrincipal
     }
+    
+    convenience init(discreteUnitCount: Int64, description: String? = nil) {
+        self.init(parent: nil)
+        totalUnitCount = discreteUnitCount
+        setUserInfoObject(description, forKey: .descriptionKey)
+    }
+    
+    public var progressDescription: String {
+        return userInfo[.descriptionKey] as? String ?? "UNKNOWN"
+    }
+
+    public func compoundProgressDescription(_ indent: String = "") -> String {
+        let address = Unmanaged.passUnretained(self).toOpaque()
+        var result = "\(indent)<\(String(describing: type(of: self))): \(address), \(completedUnitCount)/\(totalUnitCount) (\(fractionCompleted)) - \(progressDescription)>"
+        for dependency in _dependencies {
+            if let dependency = dependency as? ProgressLink {
+                result += "\n" + dependency._proxy.compoundProgressDescription(indent + "  ")
+                result += "\n" + dependency._child.compoundProgressDescription(indent + "      ")
+            }
+        }
+        return result
+    }
 }
 
 internal extension Progress {
-    
-    /// <#Description#>
-    ///
-    /// - Parameters:
-    ///   - lhs: <#lhs description#>
-    ///   - rhs: <#rhs description#>
-    internal static func connect(progressReporting lhs: Any, addDependency rhs: Any) {
-        if let lhs = lhs as? ProgressReporting, let rhs = rhs as? ProgressReporting {
-            lhs.progress.addDependency(rhs.progress)
-        }
-    }
     
     internal func complete() {
         if totalUnitCount > 0 {

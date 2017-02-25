@@ -143,11 +143,11 @@
 		5783D2311E5472D600BD2E4B /* Progress */ = {
 			isa = PBXGroup;
 			children = (
+				5775AA551E60DEE30025E6BB /* CompoundProgressReporting.swift */,
 				5783D2341E5472FB00BD2E4B /* ProgressDependencies.swift */,
 				5783D2361E54730300BD2E4B /* ProgressExtensions.swift */,
 				5783D2321E5472EA00BD2E4B /* ProgressLink.swift */,
 				579549111E55CEB200EE349C /* ProgressObserver.swift */,
-				5775AA551E60DEE30025E6BB /* CompoundProgressReporting.swift */,
 				5775AA571E60E24F0025E6BB /* WeightenedProgressReporting.swift */,
 			);
 			path = Progress;

@@ -19,11 +19,12 @@ open class Task<ResultType>: Operation, ProgressReporting, TaskProtocol {
     private var _isCancelled = false
 
     /// <#Description#>
-    public let progress = Progress.discreteProgress(totalUnitCount: 0)
+    public let progress: Progress = Progress.discreteProgress(totalUnitCount: 0)
 
     /// <#Description#>
     public override init() {
         super.init()
+        progress.setUserInfoObject(description, forKey: .descriptionKey)
         progress.isCancellable = true
         progress.cancellationHandler = { [weak self] in self?.cancel() }
         progress.pausingHandler = { [weak self] in self?.pause() }

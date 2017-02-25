@@ -10,7 +10,7 @@ import Foundation
 
 /// <#Description#>
 public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
-    
+
     private let _lock = NSLock()
     private var _factory: () throws -> AnyTask<ResultType>
 
@@ -28,7 +28,7 @@ public final class FactoryTask<ResultType>: AsyncTask<ResultType> {
             let task = try _factory()
             _task = task
             for operation in task.backingOperations {
-                progress.addDependency(operation.compoundProgress)
+                progress.addDependency(operation.compoundProgress, unitCount: operation.compoundProgress.totalUnitCount)
             }
             task.start {
                 self.finish(task.getResult)
