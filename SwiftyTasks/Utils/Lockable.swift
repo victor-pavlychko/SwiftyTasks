@@ -37,7 +37,6 @@ internal extension NSLocking {
         return try block()
     }
     
-    @inline(__always)
     /// <#Description#>
     ///
     /// - Parameters:
@@ -45,27 +44,13 @@ internal extension NSLocking {
     ///   - value: <#value description#>
     ///   - block: <#block description#>
     /// - Throws: <#throws value description#>
+    @inline(__always)
     internal func syncAndSet<T>(variable: inout T, value: T, execute block: () throws -> Void) rethrows where T: Equatable {
         try sync {
             if variable != value {
                 variable = value
                 try block()
             }
-        }
-    }
-}
-
-internal extension Synchronizable {
-    
-    /// <#Description#>
-    ///
-    /// - Parameter code: <#code description#>
-    /// - Returns: <#return value description#>
-    /// - Throws: <#throws value description#>
-    @inline(__always)
-    internal func sync<T>(_ code: () throws -> T) rethrows -> T {
-        return try lock.sync {
-            return try code()
         }
     }
 }

@@ -40,7 +40,7 @@ public class AnyTask<T>: TaskProtocol, CustomStringConvertible {
     }
 }
 
-fileprivate class _AnyTaskBox<T>: TaskProtocol, CustomStringConvertible {
+fileprivate class _AnyTaskBox<T>: TaskProtocol {
     
     typealias ResultType = T
     

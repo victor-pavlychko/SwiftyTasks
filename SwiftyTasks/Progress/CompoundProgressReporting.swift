@@ -8,44 +8,18 @@
 
 import Foundation
 
-public protocol CompoundProgressReporting {
+public protocol CompoundProgressReporting: class {
 
     var compoundProgress: Progress { get }
 }
 
-fileprivate let _globalLock = NSLock()
-
-fileprivate struct AssociatedKeys {
-    fileprivate struct CompoundProgressReporting {
-        fileprivate static var compoundProgress = "SwiftyTasks.CompoundProgressReporting.compoundProgress"
-    }
-}
-
-public extension CompoundProgressReporting where Self: AnyObject {
+public extension CompoundProgressReporting {
     
-    var compoundProgress: Progress {
-        if let compoundProgress = objc_getAssociatedObject(self, &AssociatedKeys.CompoundProgressReporting.compoundProgress) as? Progress {
-            return compoundProgress
-        }
-        return _globalLock.sync {
-            if let compoundProgress = objc_getAssociatedObject(self, &AssociatedKeys.CompoundProgressReporting.compoundProgress) as? Progress {
-                return compoundProgress
-            }
-
-            let compoundProgress = Progress(discreteUnitCount: 0, description: "Compound progress for \(self)")
-            compoundProgress.isCancellable = true
-            compoundProgress.isPausable = true
-
-            if let weightenedProgressReporting = self as? WeightenedProgressReporting {
-                compoundProgress.addDependency(weightenedProgressReporting.progress, unitCount: weightenedProgressReporting.progressWeight.rawValue)
-            } else if let progressReporting = self as? ProgressReporting {
-                compoundProgress.addDependency(progressReporting.progress, unitCount: ProgressWeight.default.rawValue)
-            }
-
-            objc_setAssociatedObject(self, &AssociatedKeys.CompoundProgressReporting.compoundProgress, compoundProgress, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            return compoundProgress
-        }
+    public func attachProgress(component: CompoundProgressReporting) {
+        compoundProgress.addComponent(progress: component.compoundProgress, unitCount: component.compoundProgress.totalUnitCount)
+    }
+    
+    public func attachProgress(_ progress: Progress, unitCount: Int64 = ProgressWeight.default.rawValue) {
+        compoundProgress.addComponent(progress: progress, unitCount: unitCount)
     }
 }
-
-extension Operation: CompoundProgressReporting { }

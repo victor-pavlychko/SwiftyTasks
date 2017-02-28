@@ -56,6 +56,8 @@ open class AsyncTask<ResultType>: Task<ResultType> {
     public final override var isExecuting: Bool { return _state == .executing }
     public final override var isFinished: Bool { return _state == .finished }
 
+    public override class var progressWeight: ProgressWeight { return .normal }
+
     open override func start() {
         _state = .executing
         purgeDependencies()

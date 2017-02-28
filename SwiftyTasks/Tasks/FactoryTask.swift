@@ -8,13 +8,13 @@
 
 import Foundation
 
-public final class FactoryTask<TaskType>: AsyncTask<TaskType.ResultType>, WeightenedProgressReporting where TaskType: TaskProtocol {
+public final class FactoryTask<TaskType>: AsyncTask<TaskType.ResultType> where TaskType: TaskProtocol {
 
     private let _lock = NSLock()
     private var _factory: () throws -> TaskType
     private weak var _task: TaskType?
     
-    public static var progressWeight: ProgressWeight {
+    public override class var progressWeight: ProgressWeight {
         if let weightenedProgressReporting = TaskType.self as? WeightenedProgressReporting.Type {
             return weightenedProgressReporting.progressWeight
         }
@@ -30,7 +30,7 @@ public final class FactoryTask<TaskType>: AsyncTask<TaskType.ResultType>, Weight
             let task = try _factory()
             _task = task
             for operation in task.backingOperations {
-                progress.addDependency(operation.compoundProgress, unitCount: operation.compoundProgress.totalUnitCount)
+                attachProgress(component: operation)
             }
             task.start {
                 self.finish(task.getResult)

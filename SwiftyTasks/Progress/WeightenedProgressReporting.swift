@@ -8,24 +8,22 @@
 
 import Foundation
 
-public struct ProgressWeight: RawRepresentable, ExpressibleByIntegerLiteral {
+public struct ProgressWeight: RawRepresentable {
     
     public let rawValue: Int64
     
     public init(rawValue: Int64) {
         self.rawValue = rawValue
     }
-    
-    public init(integerLiteral value: Int64) {
-        rawValue = value
-    }
 }
 
 public extension ProgressWeight {
-    
-    public static let instant = ProgressWeight(rawValue: 5)
-    public static let normal = ProgressWeight(rawValue: 100)
-    public static let epic = ProgressWeight(rawValue: 1000)
+
+    public static let instant = ProgressWeight(rawValue: 100)
+    public static let fast = ProgressWeight(rawValue: 200)
+    public static let normal = ProgressWeight(rawValue: 400)
+    public static let slow = ProgressWeight(rawValue: 800)
+    public static let epic = ProgressWeight(rawValue: 1600)
 
     public static let `default` = ProgressWeight.normal
 }

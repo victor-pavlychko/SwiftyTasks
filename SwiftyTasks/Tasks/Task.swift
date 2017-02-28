@@ -10,7 +10,7 @@ import Foundation
 
 /// Base class for writing custom Tasks. Provides result handling and
 /// removes dependencies on start to lower memory use.
-open class Task<ResultType>: Operation, ProgressReporting, TaskProtocol {
+open class Task<ResultType>: Operation, WeightenedProgressReporting, TaskProtocol {
 
     private let _result = Pending<ResultType>()
     
@@ -19,12 +19,13 @@ open class Task<ResultType>: Operation, ProgressReporting, TaskProtocol {
     private var _isCancelled = false
 
     /// <#Description#>
+    public class var progressWeight: ProgressWeight { return .instant }
     public let progress: Progress = Progress.discreteProgress(totalUnitCount: 0)
 
     /// <#Description#>
     public override init() {
         super.init()
-        progress.setUserInfoObject(description, forKey: .descriptionKey)
+        progress.label = description
         progress.isCancellable = true
         progress.cancellationHandler = { [weak self] in self?.cancel() }
         progress.pausingHandler = { [weak self] in self?.pause() }
