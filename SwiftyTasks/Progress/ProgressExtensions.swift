@@ -8,6 +8,8 @@
 
 import Foundation
 
+fileprivate let _globalLock = NSLock()
+
 fileprivate extension ProgressUserInfoKey {
     fileprivate static let labelKey = ProgressUserInfoKey(rawValue: "SwiftyTasks.ProgressUserInfoKey.labelKey")
 }
@@ -25,11 +27,27 @@ public extension Progress {
         set { setUserInfoObject(newValue, forKey: .labelKey) }
     }
     
+    @discardableResult
+    public func incrementTotalUnitCount(by delta: Int64 = 1) -> Int64 {
+        return _globalLock.sync {
+            totalUnitCount += delta
+            return completedUnitCount
+        }
+    }
+    
+    @discardableResult
+    public func incrementCompletedUnitCount(by delta: Int64 = 1) -> Int64 {
+        return _globalLock.sync {
+            completedUnitCount += delta
+            return completedUnitCount
+        }
+    }
+    
     public func addComponent(progress componentProgress: Progress, unitCount: Int64? = nil) {
-        let parentUnitCount = unitCount ?? componentProgress.totalUnitCount
+        let pendingUnitCount = unitCount ?? componentProgress.totalUnitCount
         let progressProxy = ProgressProxy(componentProgress)
-        totalUnitCount += parentUnitCount
-        addChild(progressProxy, withPendingUnitCount: parentUnitCount)
+        incrementTotalUnitCount(by: pendingUnitCount)
+        addChild(progressProxy, withPendingUnitCount: pendingUnitCount)
     }
     
     public func complete() {

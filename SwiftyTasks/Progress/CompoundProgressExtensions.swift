@@ -42,9 +42,9 @@ public extension CompoundProgressReporting {
     
     private func _attachSelfComponent(to progress: Progress) {
         if let component = self as? WeightenedProgressReporting {
-            compoundProgress.addComponent(progress: component.progress, unitCount: component.progressWeight.rawValue)
+            progress.addComponent(progress: component.progress, unitCount: component.progressWeight.rawValue)
         } else if let component = self as? ProgressReporting {
-            compoundProgress.addComponent(progress: component.progress, unitCount: ProgressWeight.default.rawValue)
+            progress.addComponent(progress: component.progress, unitCount: ProgressWeight.default.rawValue)
         }
     }
 }

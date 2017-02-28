@@ -30,7 +30,7 @@ public final class FactoryTask<TaskType>: AsyncTask<TaskType.ResultType> where T
             let task = try _factory()
             _task = task
             for operation in task.backingOperations {
-                attachProgress(component: operation)
+                progress.addComponent(progress: operation.compoundProgress)
             }
             task.start {
                 self.finish(task.getResult)

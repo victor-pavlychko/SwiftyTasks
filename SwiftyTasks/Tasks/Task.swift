@@ -19,7 +19,7 @@ open class Task<ResultType>: Operation, WeightenedProgressReporting, TaskProtoco
     private var _isCancelled = false
 
     /// <#Description#>
-    public class var progressWeight: ProgressWeight { return .instant }
+    open class var progressWeight: ProgressWeight { return .instant }
     public let progress: Progress = Progress.discreteProgress(totalUnitCount: 0)
 
     /// <#Description#>
